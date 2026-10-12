@@ -43,11 +43,24 @@ export const skills = [
   'UX/UI & web design',
 ];
 
-// Professional content transcribed from Vlad's supplied CV.
+// Professional content from Vlad's supplied CV and subsequent work details.
 // The original PDF, street address, birth date, and demographic fields are not published.
 export const cv = {
   summary: 'With seven years of creative experience, including five years of professional work, I specialize in 3D design, CGI, and rendering. I work with Blender, Cinema 4D, Maya, and the Adobe Creative Suite, alongside video editing and photography, to create high-quality visuals and immersive rendered content.',
   experience: [
+    {
+      period: '2024 — Present',
+      title: 'Graphic & product designer',
+      place: 'Level Auto Rental',
+      description: 'Responsible for the design of vehicle wraps and branding graphics, branded merchandise, products, business cards, and social media content. Developed visual materials for the company’s brand identity across vehicle applications, printed collateral, and digital communications.',
+    },
+    {
+      period: '2024 — Present',
+      title: 'Graphic designer & audiovisual content creator',
+      place: 'Feeling Coffee',
+      location: 'Moldova',
+      description: 'Developed menus, social media graphics, advertising materials, and uniform designs for a coffee shop chain in Moldova. Produced promotional video content through videography and cinematography, supporting brand communications across digital channels and physical locations.',
+    },
     {
       period: 'Jan 2023 — Dec 2024',
       title: 'Graphic designer',
