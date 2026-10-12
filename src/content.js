@@ -143,8 +143,8 @@ export const copy = {
   en: {
     nav: { home: 'Home', works: 'Works', about: 'About', cv: 'CV', contact: 'Contact' },
     hero: {
-      eyebrow: 'Automotive CGI & 3D art',
-      introduction: 'Car-focused artworks.\nA different perspective on form, light, and motion.',
+      eyebrow: 'Graphical design, Videography, 3D art & Automotive CGI',
+      introduction: 'A different perspective on \n form, light, and motion.',
       workLink: 'Explore works',
       aboutLink: 'About me',
     },
