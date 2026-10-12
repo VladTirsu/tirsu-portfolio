@@ -52,13 +52,14 @@ export const cv = {
       period: '2024 — Present',
       title: 'Graphic & product designer',
       place: 'Level Auto Rental',
+      location: 'Chișinău, Moldova',
       description: 'Responsible for the design of vehicle wraps and branding graphics, branded merchandise, products, business cards, and social media content. Developed visual materials for the company’s brand identity across vehicle applications, printed collateral, and digital communications.',
     },
     {
       period: '2024 — Present',
       title: 'Graphic designer & audiovisual content creator',
       place: 'Feeling Coffee',
-      location: 'Moldova',
+      location: 'Chișinău, Moldova',
       description: 'Developed menus, social media graphics, advertising materials, and uniform designs for a coffee shop chain in Moldova. Produced promotional video content through videography and cinematography, supporting brand communications across digital channels and physical locations.',
     },
     {
@@ -75,22 +76,6 @@ export const cv = {
       location: 'Chișinău, Moldova',
       description: 'Graphic and product design, 3D motion design, merchandise design, video editing, videography, UX/UI, and website design.',
     },
-    {
-  period: '2024 — Present',
-  title: 'Graphic & product designer',
-  place: 'Level Auto Rental',
-  location: 'Chișinău, Moldova',
-  description:
-    'Responsible for the design of vehicle wraps and branding graphics, branded merchandise, products, business cards, and social media content. Developed visual materials for the company’s brand identity across vehicle applications, printed collateral, and digital communications.',
-  },
-  {
-  period: '2024 — Present',
-  title: 'Graphic designer & audiovisual content creator',
-  place: 'Feeling Coffee',
-  location: 'Chișinău, Moldova',
-  description:
-    'Developed menus, social media graphics, advertising materials, and uniform designs for a coffee shop chain in Moldova. Produced promotional video content through videography and cinematography, supporting brand communications across digital channels and physical locations.',
-  },
   ],
   education: [
     {

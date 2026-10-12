@@ -5,7 +5,6 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { profile, projects, skills, cv, copy } from './content.js';
 import './style.css';
-import '@fontsource/ibm-plex-mono/700.css';
 
 gsap.registerPlugin(ScrollTrigger);
 

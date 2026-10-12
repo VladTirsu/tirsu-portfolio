@@ -159,16 +159,9 @@
   .cv-row > p.eyebrow { font-size: 12px; font-weight: 700; }
   .cv-row h3 { font-size: 19px; letter-spacing: -0.02em; }
   .cv-detail { max-width: 500px; font-family: var(--mono); font-size: 12px; line-height: 1.8; color: #a7a79f; margin-top: 14px; }
-<<<<<<< Updated upstream
-  .cv-place { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; text-align: right; line-height: 1.7; color: #a7a79f; padding-top: 5px; }
+  .cv-place { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; text-align: right; line-height: 1.3; color: #ffffff; padding-top: 5px; }
   .cv-place > span:first-child { font-weight: 700; }
-=======
-  .cv-place { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; text-align: right; line-height: 1.3; color: #ffffff; padding-top: 5px;  }
->>>>>>> Stashed changes
   .cv-location { display: block; margin-top: 9px; font-size: 10px; text-transform: none; letter-spacing: 0; }
-  .cv-place > span:first-child {
-  font-weight: 700;
-  }
   :is(.section-light, .section-white) .cv-row { border-color: var(--line); }
   :is(.section-light, .section-white) .cv-row .accent { color: #856900; }
   :is(.section-light, .section-white) .cv-detail, :is(.section-light, .section-white) .cv-place { color: #61615c; }
