@@ -34,7 +34,7 @@ Edit `src/content.js`:
 - `skills` and `cv`: tools, experience, education, recognition, summary, language levels, working approach, interests, and driving licence. CV content lives on `/cv`; there is no download control. It reflects the supplied CV, including the current degree marked as in progress. The original PDF, street address, date of birth, and demographic fields are not served by the website.
 - `copy.en`: English interface copy. Add equivalent language objects for German, Russian, and Romanian when ready. Language switching is not implemented yet.
 
-The logo and video/portrait media currently use text placeholders. Their render locations are in `src/main.js`. Decorative video playback is managed in `src/hero-video.js`. Typography, colours, spacing, and interactions are in `src/style.css`.
+The header uses a Creative Portfolio wordmark. Video/portrait media currently use text placeholders. Their render locations are in `src/main.js`. Decorative video playback is managed in `src/hero-video.js`. Typography, colours, spacing, and interactions are in `src/style.css`.
 
 ## Behaviour to check
 

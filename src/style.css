@@ -48,7 +48,7 @@
   .site-header nav { display: flex; gap: clamp(5px, 1.7vw, 30px); }
   .hero { position: relative; isolation: isolate; min-height: calc(100svh - 88px); overflow: clip; }
   .hero-container { position: relative; z-index: 3; display: flex; flex-direction: column; min-height: calc(100svh - 88px); padding-top: 32px; padding-bottom: 28px; }
-  .hero-top { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+  .hero-top { display: flex; justify-content: flex-end; align-items: center; gap: 20px; }
   .hero-grid { margin-top: auto; padding-top: clamp(100px, 18vh, 240px); }
   .hero-name { position: relative; z-index: 2; }
   .hero-bottom { display: flex; justify-content: space-between; align-items: center; gap: 32px; margin-top: 28px; }
@@ -78,7 +78,7 @@
   .arrow { display: inline-block; line-height: 1; font-family: var(--font); font-weight: 500; transition: transform 220ms ease; }
   .arrow svg { display: inline-block; width: 1em; height: 1em; vertical-align: middle; }
   a:hover > .arrow, a:focus-visible > .arrow { transform: translateX(5px); }
-  .logo-placeholder { font-family: var(--mono); font-size: 22px; letter-spacing: -0.07em; font-weight: 400; padding-block: 10px; }
+  .brand-link { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; font-weight: 700; text-transform: uppercase; white-space: nowrap; padding-block: 10px; }
   .nav-link { position: relative; font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; font-weight: 700; padding: 12px 15px; transition: color 200ms ease, background-color 200ms ease; }
   .nav-link[aria-current]::after { content: ''; position: absolute; bottom: 3px; left: 15px; right: 15px; height: 2px; background: var(--yellow); }
   .nav-link:hover, .nav-link:focus-visible { color: var(--ink); background: var(--paper); }
@@ -252,7 +252,7 @@
     :root { --gutter: 24px; }
     .site-header { height: 106px; }
     .header-inner { flex-direction: column; align-items: stretch; justify-content: center; gap: 7px; }
-    .logo-placeholder { font-size: 18px; padding: 0; width: fit-content; }
+    .brand-link { font-size: 10px; padding: 0; width: fit-content; }
     .site-header nav { justify-content: space-between; gap: 4px; }
     .nav-link { font-size: 10px; padding: 10px 4px; letter-spacing: 0.09em; }
     .nav-link[aria-current]::after { left: 4px; right: 4px; bottom: 1px; }
@@ -342,7 +342,6 @@
   @media (max-width: 420px) {
     .project-grid { grid-template-columns: 1fr; gap: 36px; }
     .card-frame { aspect-ratio: 1.5; }
-    .hero-top > .eyebrow:last-child { display: none; }
     .hero-actions { flex-direction: column; align-items: stretch; }
     .hero-actions .button { flex: none; }
     .placeholder-label { font-size: 10px; }

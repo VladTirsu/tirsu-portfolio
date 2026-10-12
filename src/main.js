@@ -81,7 +81,7 @@ function homePage() {
   return `<section class="hero section-dark">
     ${heroBackground()}
     <div class="container hero-container">
-      <div class="hero-top"><p class="eyebrow hero-enter">Creative portfolio</p><p class="eyebrow muted hero-enter">Design / Motion / Digital</p></div>
+      <div class="hero-top"><p class="eyebrow muted hero-enter">Design / Motion / Digital</p></div>
       <div class="hero-grid">
         <div class="hero-name"><p class="eyebrow accent hero-enter">${t.hero.eyebrow}</p><h1 aria-label="${escape(profile.name)}"><span class="name-line"><span class="name-outline hero-title">${escape(profile.firstName)}</span></span><span class="name-line"><span class="hero-title">${escape(profile.lastName)}<span class="accent">.</span></span></span></h1></div>
       </div>
@@ -152,7 +152,7 @@ function notFoundPage() {
 
 function renderHeader(path) {
   const current = path.startsWith('/projects/') ? '/works' : path;
-  header.innerHTML = `<div class="header-inner"><a class="logo-placeholder" href="/" aria-label="${escape(profile.name)} — home">*Logo*</a><nav aria-label="Main navigation">${Object.entries(t.nav).map(([key, label]) => {
+  header.innerHTML = `<div class="header-inner"><a class="brand-link" href="/" aria-label="${escape(profile.name)} — home">Creative Portfolio</a><nav aria-label="Main navigation">${Object.entries(t.nav).map(([key, label]) => {
     const href = key === 'home' ? '/' : `/${key}`;
     return `<a class="nav-link" href="${href}" ${current === href ? 'aria-current="page"' : ''}>${label}</a>`;
   }).join('')}</nav></div>`;
