@@ -33,8 +33,6 @@
   main:focus { outline: none; }
   main { min-height: 55vh; }
   html { scroll-padding-top: 100px; }
-  .skip-link { position: fixed; top: 12px; left: 12px; transform: translateY(-150%); z-index: 100; padding: 16px 24px; background: var(--yellow); color: var(--ink); font-weight: 700; }
-  .skip-link:focus { transform: none; }
   .outline-definitions { position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none; }
   noscript { display: block; padding: 24px; background: var(--yellow); color: var(--ink); }
 }
