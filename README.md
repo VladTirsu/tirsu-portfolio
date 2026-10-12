@@ -1,6 +1,6 @@
-# Vlad Tirsu — Portfolio
+# Vlad Tîrșu — Portfolio
 
-A responsive automotive art portfolio built with Vite, JavaScript, CSS, and GSAP. It includes Home, Works, About, CV, Contact, and four dedicated project pages. Missing media and personal details are explicitly labelled text placeholders.
+A responsive automotive art portfolio built with Vite, JavaScript, CSS, and GSAP. It includes Home, Works, About, CV, Contact, and four dedicated project pages. The CV, skills, biography, email, and phone are populated from Vlad's supplied CV. Missing artwork, project details, and social profiles remain explicitly labelled text placeholders.
 
 ## Development
 
@@ -27,9 +27,9 @@ Deploy `dist/` to a static host. Routes use the browser History API, so the host
 
 Edit `src/content.js`:
 
-- `profile`: name, specialty, email, Behance, Instagram, and LinkedIn. Empty contact fields render as non-clickable placeholders. Add only public contact details you want displayed.
+- `profile`: name, specialty, location, email, phone, Behance, Instagram, and LinkedIn. Empty contact fields render as non-clickable placeholders. Add only public contact details you want displayed.
 - `projects`: project titles, descriptions, credits, year, and images. Put image files under `public/artworks/` and replace null entries with paths such as `/artworks/project-1-01.webp`. The first image is also the overview cover. Use artwork you have permission to publish.
-- `skills` and `cv`: your real tools, experience, education, summary, and languages. CV content lives on `/cv`; there is no download control.
+- `skills` and `cv`: tools, experience, education, recognition, summary, language levels, working approach, interests, and driving licence. CV content lives on `/cv`; there is no download control. It reflects the supplied CV, including the current degree marked as in progress. The original PDF, street address, date of birth, and demographic fields are not served by the website.
 - `copy.en`: English interface copy. Add equivalent language objects for German, Russian, and Romanian when ready. Language switching is not implemented yet.
 
 The logo and hero/portrait media currently use text placeholders. Their render locations are in `src/main.js`. Typography, colours, spacing, and interactions are in `src/style.css`.
@@ -41,6 +41,6 @@ The logo and hero/portrait media currently use text placeholders. Their render l
 - The CV is a page, and there is no menu control or CV download.
 - Desktop, tablet, and narrow mobile layouts have no horizontal overflow.
 - Reduced-motion preferences disable entrance/transition motion and artwork scaling.
-- Behance opens the supplied portfolio. Other contact methods remain placeholders until configured.
+- Email and phone open the mail and telephone handlers. Behance opens the supplied portfolio. Instagram and LinkedIn remain placeholders until configured.
 
 The visual implementation is original, informed by the supplied reference screenshots. It contains none of the reference site's code, branding, or artwork. Inter and IBM Plex Mono are supplied by Fontsource and distributed under the SIL Open Font License; their license files are included in `public/font-licenses/` and copied into the production build.

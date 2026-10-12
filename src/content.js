@@ -1,12 +1,15 @@
 // Keep content separate from rendering. Additional languages can use this shape.
 // Contact URLs stay empty until Vlad supplies them; never invent contact details.
 export const profile = {
-  name: 'Vlad Tirsu',
+  name: 'Vlad Tîrșu',
   firstName: 'Vlad',
-  lastName: 'Tirsu',
+  lastName: 'Tîrșu',
   specialty: 'Automotive CGI & 3D art',
   behance: 'https://www.behance.net/vlad_t18',
-  email: '',
+  email: 'vladtirsu1803@gmail.com',
+  phone: '+43 664 146 9222',
+  phoneHref: 'tel:+436641469222',
+  location: 'St. Pölten, Austria',
   instagram: '',
   linkedin: '',
 };
@@ -27,24 +30,81 @@ export const projects = [1, 2, 3, 4].map((number) => ({
 }));
 
 export const skills = [
-  '*3D software*',
-  '*Rendering engine*',
-  '*Compositing tool*',
-  '*Image editing*',
-  '*Animation tool*',
-  '*Additional skill*',
+  'Blender',
+  'Cinema 4D',
+  'Maya',
+  'Adobe Creative Suite',
+  'Microsoft tools',
+  '3D design',
+  'CGI & rendering',
+  'Video editing',
+  'Photography',
+  'Graphic & product design',
+  'UX/UI & web design',
 ];
 
+// Professional content transcribed from Vlad's supplied CV.
+// The original PDF, street address, birth date, and demographic fields are not published.
 export const cv = {
-  summary: '*Professional summary — your background, focus, and the kind of work you do.*',
+  summary: 'With seven years of creative experience, including five years of professional work, I specialize in 3D design, CGI, and rendering. I work with Blender, Cinema 4D, Maya, and the Adobe Creative Suite, alongside video editing and photography, to create high-quality visuals and immersive rendered content.',
   experience: [
-    { period: '*Dates*', title: '*Role / position*', place: '*Company / studio*', description: '*Responsibilities and selected achievements.*' },
-    { period: '*Dates*', title: '*Role / position*', place: '*Company / studio*', description: '*Responsibilities and selected achievements.*' },
+    {
+      period: 'Jan 2023 — Dec 2024',
+      title: 'Graphic designer',
+      place: 'Software Mind',
+      location: 'Chișinău, Moldova',
+      description: '',
+    },
+    {
+      period: 'Jun 2021 — Sep 2024',
+      title: 'Multidisciplinary designer & videographer',
+      place: 'Andrew Rayel',
+      location: 'Chișinău, Moldova',
+      description: 'Graphic and product design, 3D motion design, merchandise design, video editing, videography, UX/UI, and website design.',
+    },
   ],
   education: [
-    { period: '*Dates*', title: '*Degree / qualification*', place: '*Institution*', description: '*Field of study and relevant details.*' },
+    {
+      period: 'Sep 2025 — Present',
+      title: 'Creative Computing',
+      place: 'USTP — University of Applied Sciences St. Pölten',
+      location: 'St. Pölten, Austria',
+      description: 'Bachelor of Science in Engineering (BSc), in progress.',
+    },
+    {
+      period: 'Sep 2021 — May 2025',
+      title: 'High school',
+      place: 'Liceul Teoretic „Vasle Alecsandri”',
+      location: 'Chișinău, Moldova',
+      description: '',
+    },
   ],
-  languages: '*Languages and proficiency levels*',
+  awards: [
+    {
+      period: 'Mar 2023',
+      title: 'National Graphic Design Competition',
+      place: 'Tekwill',
+      description: 'Finalist.',
+    },
+  ],
+  languages: [
+    { name: 'Romanian', level: 'Native' },
+    { name: 'English', level: 'C1' },
+    { name: 'German', level: 'B2' },
+    { name: 'Russian', level: 'A2' },
+  ],
+  approach: [
+    {
+      title: 'Working with people',
+      description: 'Clear communication, active listening, patience through revisions, flexibility, and collaboration. I present my ideas confidently, welcome constructive feedback, and respect different perspectives.',
+    },
+    {
+      title: 'Keeping work organized',
+      description: 'Planning projects from concept to completion, setting clear goals, coordinating resources, and managing multiple tasks with attention to detail. I look for ways to improve workflows and solve problems efficiently.',
+    },
+  ],
+  interests: ['Design', 'Reading', 'Cooking', 'Budgeting'],
+  drivingLicence: 'Category B',
 };
 
 export const copy = {
@@ -59,11 +119,11 @@ export const copy = {
     introduction: {
       label: 'The artist',
       title: 'A fascination with cars.\nAn eye for the details.',
-      body: 'I’m Vlad Tirsu. My creative work centres on cars, automotive CGI, and 3D visualization. This is a space for the projects, ideas, and experiments behind my work.',
+      body: 'I’m Vlad Tîrșu. My creative work centres on cars, automotive CGI, and 3D visualization. This is a space for the projects, ideas, and experiments behind my work.',
     },
     works: { title: 'Selected works', all: 'All projects', indexTitle: 'The works.', description: 'A collection of car-focused artworks and creative explorations.' },
-    about: { title: 'Behind the work.', label: 'About me', biography: '*Biography — your story, creative approach, and what drives your work.*' },
-    cv: { title: 'The CV.', label: 'Background & experience', experience: 'Experience', education: 'Education', skills: 'Tools & skills', languages: 'Languages' },
+    about: { title: 'Behind the work.', label: 'About me', biography: 'My background spans graphic and product design, 3D motion, video, photography, and UX/UI. I’m currently studying Creative Computing at USTP in St. Pölten, building on professional work with Andrew Rayel and Software Mind.' },
+    cv: { title: 'The CV.', label: 'Background & experience', experience: 'Experience', education: 'Education', awards: 'Recognition', skills: 'Tools & skills', languages: 'Languages', approach: 'How I work', interests: 'Beyond the work', drivingLicence: 'Driving licence', languageNote: 'CEFR levels for English, German, and Russian' },
     contact: { title: 'Let’s talk.', label: 'Contact', introduction: 'Have a project in mind, a collaboration to discuss, or a question about the work? Choose a way to get in touch.' },
     footer: { title: 'Let’s make\nsomething move.', action: 'Get in touch' },
     project: { back: 'All works', client: 'Client', role: 'Role', software: 'Software', year: 'Year', next: 'Next project', backBottom: 'Back to projects' },

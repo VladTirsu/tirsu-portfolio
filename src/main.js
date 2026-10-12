@@ -56,7 +56,7 @@ function skillsSection({ dark = false, heading = true, showCvLink = true } = {})
 
 function experienceRows(rows) {
   return `<div class="cv-rows">${rows.map((entry) => `<article class="cv-row" data-reveal>
-    <p class="eyebrow accent">${escape(entry.period)}</p><div><h3>${escape(entry.title)}</h3><p class="cv-detail">${escape(entry.description)}</p></div><p class="cv-place">${escape(entry.place)}</p>
+    <p class="eyebrow accent">${escape(entry.period)}</p><div><h3>${escape(entry.title)}</h3>${entry.description ? `<p class="cv-detail">${escape(entry.description)}</p>` : ''}</div><p class="cv-place"><span>${escape(entry.place)}</span>${entry.location ? `<span class="cv-location">${escape(entry.location)}</span>` : ''}</p>
   </article>`).join('')}</div>`;
 }
 
@@ -91,26 +91,30 @@ function worksPage() {
 }
 
 function aboutPage() {
-  return `${pageHeading(t.about.label, t.about.title)}<section class="section section-white"><div class="container about-grid"><div data-reveal>${placeholder('*Portrait / studio image*', 'portrait-placeholder')}</div><div class="about-copy" data-reveal><p class="eyebrow muted">${escape(profile.name)} / The artist</p><h2>Cars. Creativity.<br>A closer look.</h2><p>${t.introduction.body}</p><p class="placeholder-copy">${escape(t.about.biography)}</p><div class="inline-actions">${link('/cv', 'View my CV', 'button button-dark')}${link('/contact', 'Get in touch')}</div></div></div></section>${skillsSection()}`;
+  return `${pageHeading(t.about.label, t.about.title)}<section class="section section-white"><div class="container about-grid"><div data-reveal>${placeholder('*Portrait / studio image*', 'portrait-placeholder')}</div><div class="about-copy" data-reveal><p class="eyebrow muted">${escape(profile.name)} / The artist</p><h2>Cars. Creativity.<br>A closer look.</h2><p>${t.introduction.body}</p><p>${escape(t.about.biography)}</p><div class="inline-actions">${link('/cv', 'View my CV', 'button button-dark')}${link('/contact', 'Get in touch')}</div></div></div></section>${skillsSection()}`;
 }
 
 function cvPage() {
-  return `${pageHeading(t.cv.label, t.cv.title, profile.specialty)}<section class="section section-white"><div class="container cv-introduction" data-reveal><p class="eyebrow muted">Profile</p><h2>${escape(profile.name)}</h2><p class="placeholder-copy">${escape(cv.summary)}</p></div></section>
+  return `${pageHeading(t.cv.label, t.cv.title, profile.specialty)}<section class="section section-white"><div class="container cv-introduction" data-reveal><p class="eyebrow muted">Profile</p><h2>${escape(profile.name)}</h2><p class="cv-summary">${escape(cv.summary)}</p><div class="cv-contact"><span class="eyebrow muted">${escape(profile.location)}</span><a href="mailto:${escape(profile.email)}">${escape(profile.email)}</a><a href="${escape(profile.phoneHref)}">${escape(profile.phone)}</a></div></div></section>
   <section class="section section-dark"><div class="container"><div class="section-heading" data-reveal><div><p class="eyebrow accent">01 — Professional background</p><h2>${t.cv.experience}<span class="accent">.</span></h2></div></div>${experienceRows(cv.experience)}</div></section>
   <section class="section section-light"><div class="container"><div class="section-heading" data-reveal><div><p class="eyebrow muted">02 — Learning</p><h2>${t.cv.education}.</h2></div></div>${experienceRows(cv.education)}</div></section>
-  ${skillsSection({ showCvLink: false })}<section class="section section-white"><div class="container languages-section" data-reveal><div><p class="eyebrow muted">Communication</p><h2>${t.cv.languages}.</h2></div><p class="placeholder-copy">${escape(cv.languages)}</p></div></section>`;
+  <section class="section section-white"><div class="container"><div class="section-heading" data-reveal><div><p class="eyebrow muted">03 — Recognition</p><h2>${t.cv.awards}.</h2></div></div>${experienceRows(cv.awards)}</div></section>
+  ${skillsSection({ showCvLink: false })}<section class="section section-white"><div class="container languages-section"><div data-reveal><p class="eyebrow muted">Communication</p><h2>${t.cv.languages}.</h2></div><div data-reveal><dl class="language-list">${cv.languages.map((language) => `<div><dt>${escape(language.name)}</dt><dd class="eyebrow">${escape(language.level)}</dd></div>`).join('')}</dl><p class="language-note eyebrow muted">${t.cv.languageNote}</p></div></div></section>
+  <section class="section section-dark"><div class="container"><div class="section-heading" data-reveal><div><p class="eyebrow accent">The approach</p><h2>${t.cv.approach}.</h2></div></div><div class="approach-grid">${cv.approach.map((item) => `<article data-reveal><h3>${escape(item.title)}</h3><p>${escape(item.description)}</p></article>`).join('')}</div></div></section>
+  <section class="section section-light"><div class="container cv-interests" data-reveal><div><p class="eyebrow muted">${t.cv.interests}</p><ul class="interests-list">${cv.interests.map((interest) => `<li>${escape(interest)}</li>`).join('')}</ul></div><p class="eyebrow muted">${t.cv.drivingLicence}<span class="licence-value">${escape(cv.drivingLicence)}</span></p></div></section>`;
 }
 
 function contactRows() {
   const channels = [
     { name: 'Email', url: profile.email ? `mailto:${profile.email}` : '', value: profile.email || '*Email address*' },
+    ...(profile.phone ? [{ name: 'Phone', url: profile.phoneHref, value: profile.phone }] : []),
     { name: 'Behance', url: profile.behance, value: 'vlad_t18' },
     { name: 'Instagram', url: profile.instagram, value: profile.instagram ? 'View profile' : '*Instagram profile*' },
     { name: 'LinkedIn', url: profile.linkedin, value: profile.linkedin ? 'View profile' : '*LinkedIn profile*' },
   ];
   return `<div class="contact-list">${channels.map(({ name, url, value }) => {
     const body = `<span class="eyebrow contact-label">${name}</span><span class="contact-value">${escape(value)}</span>${url ? arrow('diagonal') : '<span class="contact-pending eyebrow">To be added</span>'}`;
-    return url ? `<a class="contact-row" href="${escape(url)}" ${url.startsWith('mailto:') ? '' : 'target="_blank" rel="noopener noreferrer"'} data-reveal>${body}</a>` : `<div class="contact-row contact-placeholder" data-reveal>${body}</div>`;
+    return url ? `<a class="contact-row" href="${escape(url)}" ${/^(mailto:|tel:)/.test(url) ? '' : 'target="_blank" rel="noopener noreferrer"'} data-reveal>${body}</a>` : `<div class="contact-row contact-placeholder" data-reveal>${body}</div>`;
   }).join('')}</div>`;
 }
 
