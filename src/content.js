@@ -4,7 +4,7 @@ export const profile = {
   name: 'Vlad Tîrșu',
   firstName: 'Vlad',
   lastName: 'Tîrșu',
-  specialty: 'Automotive CGI & 3D art',
+  specialty: 'Graphic design, 3D & visual storytelling',
   behance: 'https://www.behance.net/vlad_t18',
   email: 'vladtirsu1803@gmail.com',
   phone: '+43 664 146 9222',
@@ -12,6 +12,19 @@ export const profile = {
   location: 'Moldova & Austria',
   instagram: 'https://www.instagram.com/vlad.t18/',
 };
+
+// Add your own video under public/videos/ and set its path here when ready.
+// An optional poster is used when motion is reduced or video playback is unavailable.
+export const heroMedia = {
+  video: '',
+  poster: '',
+  overlayOpacity: 0.62,
+};
+
+export const portfolioStats = [
+  { value: '5', label: 'Years of experience' },
+  { value: '10+', label: 'Projects' },
+];
 
 export const projects = [1, 2, 3, 4].map((number) => ({
   id: `project-${number}`,
@@ -56,14 +69,12 @@ export const skills = [
   'Kotlin',
   'Python',
   'C#',
-
-  
 ];
 
 // Professional content from Vlad's supplied CV and subsequent work details.
 // The original PDF, street address, birth date, and demographic fields are not published.
 export const cv = {
-  summary: 'With seven years of creative experience, including five years of professional work, I specialize in 3D design, CGI, and rendering. I work with Blender, Cinema 4D, Maya, and the Adobe Creative Suite, alongside video editing and photography, to create high-quality visuals and immersive rendered content.',
+  summary: 'Five years of professional experience across graphic and product design, 3D visualization, motion, and video production. Proficient in Blender, Cinema 4D, Maya, and the Adobe Creative Suite, with a focus on creating clear visual communication and carefully executed content for brands, products, and digital experiences.',
   experience: [
     {
       period: '2024 — Present',
@@ -84,7 +95,7 @@ export const cv = {
       title: 'Graphic designer',
       place: 'Software Mind',
       location: 'Chișinău, Moldova',
-      description: 'Developing comprehensive brand identities by creating distinctive logos and detailed style guides, designing marketing materials, such as brochures, infographics, and digital banners, which significantly boosted campaign engagement, effectiveness and collaborating seamlessly ',
+      description: 'Developed brand identities through logo design and detailed style guides. Designed brochures, infographics, and digital banners to support marketing campaigns and strengthen brand communication.',
     },
     {
       period: 'Jun 2021 — Sep 2026',
@@ -143,19 +154,26 @@ export const copy = {
   en: {
     nav: { home: 'Home', works: 'Works', about: 'About', cv: 'CV', contact: 'Contact' },
     hero: {
-      eyebrow: 'Graphical design, Videography, 3D art & Automotive CGI',
-      introduction: 'A different perspective on \n form, light, and motion.',
+      eyebrow: 'Multidisciplinary designer',
+      introduction: 'Ideas shaped through design, motion, and visual storytelling.',
+      disciplines: ['Graphic design', '3D & CGI', 'Motion', 'Video', 'Digital experiences'],
       workLink: 'Explore works',
       aboutLink: 'About me',
     },
     introduction: {
-      label: 'The artist',
-      title: 'A fascination with cars.\nAn eye for the details.',
-      body: 'I’m Vlad Tîrșu. My creative work centres on cars, automotive CGI, and 3D visualization. This is a space for the projects, ideas, and experiments behind my work.',
+      label: 'The practice',
+      title: 'Creative thinking.\nConsidered execution.',
+      body: 'Five years of professional experience across graphic and product design, 3D visualization, motion, and video production. Each project brings together a clear visual direction and careful execution, creating work for brands, products, and digital experiences.',
     },
-    works: { title: 'Selected works', all: 'All projects', indexTitle: 'The works.', description: 'A collection of car-focused artworks and creative explorations.' },
-    about: { title: 'Behind the work.', label: 'About me', biography: 'My background spans graphic and product design, 3D motion, video, photography, and UX/UI. I’m currently studying Creative Computing at USTP in St. Pölten, building on professional work with Andrew Rayel and Software Mind.' },
-    cv: { title: 'The CV.', label: 'Background & experience', experience: 'Experience', education: 'Education', awards: 'Recognition', skills: 'Tools & skills', languages: 'Languages', approach: 'How I work', interests: 'Beyond the work', drivingLicence: 'Driving licence', languageNote: 'CEFR levels for English, German, and Russian' },
+    works: { title: 'Selected works', all: 'All projects', indexTitle: 'The works.', description: 'A selection of projects across graphic design, 3D visualization, motion, video, and digital experiences.' },
+    about: {
+      title: 'Behind the work.',
+      label: 'About the practice',
+      heading: 'A multidisciplinary practice.\nFive years in the making.',
+      body: 'Professional work spanning brand identities, product visuals, 3D imagery, motion design, and audiovisual production. More than ten projects have brought creative ideas into focus across digital channels and physical applications, with attention to both visual quality and the needs of each brief.',
+      biography: 'Alongside professional practice, ongoing studies in Creative Computing at USTP in St. Pölten connect design with technical development.',
+    },
+    cv: { title: 'The CV.', label: 'Background & experience', experience: 'Experience', education: 'Education', awards: 'Recognition', skills: 'Tools & skills', languages: 'Languages', approach: 'How I work', interests: 'Beyond the work', drivingLicence: 'Driving licence', languageNote: 'CEFR levels for additional languages' },
     contact: { title: 'Let’s talk.', label: 'Contact', introduction: 'Have a project in mind, a collaboration to discuss, or a question about the work? Choose a way to get in touch.' },
     footer: { title: 'Let’s work\ntogether.', action: 'Contact Me' },
     project: { back: 'All works', client: 'Client', role: 'Role', software: 'Software', year: 'Year', next: 'Next project', backBottom: 'Back to projects' },

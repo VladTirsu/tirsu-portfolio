@@ -3,7 +3,8 @@ import '@fontsource/ibm-plex-mono/400.css';
 import '@fontsource/ibm-plex-mono/700.css';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { profile, projects, skills, cv, copy } from './content.js';
+import { profile, projects, skills, cv, copy, heroMedia, portfolioStats } from './content.js';
+import { attachHeroVideo } from './hero-video.js';
 import './style.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -16,6 +17,7 @@ const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 let animationContext;
 let transition;
 let renderVersion = 0;
+let cleanupHeroVideo = () => {};
 
 const escape = (value) => String(value).replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
 const lines = (value) => escape(value).replaceAll('\n', '<br>');
@@ -46,10 +48,10 @@ function projectCard(project) {
   </a>`;
 }
 
-function skillsSection({ dark = false, heading = true, showCvLink = true } = {}) {
+function skillsSection({ dark = false, heading = true } = {}) {
   return `<section class="section skills-section ${dark ? 'section-dark' : 'section-light'}">
     <div class="container">
-      ${heading ? `<div class="section-heading" data-reveal><div><p class="eyebrow">The toolkit</p><h2>Tools & skills.</h2></div>${showCvLink ? link('/cv', 'View CV') : ''}</div>` : ''}
+      ${heading ? `<div class="section-heading" data-reveal><div><p class="eyebrow">The toolkit</p><h2>Tools & skills.</h2></div></div>` : ''}
       <ul class="skills-list" aria-label="Tools and skills" data-reveal>${skills.map((skill) => `<li class="skill-tag">${escape(skill)}</li>`).join('')}</ul>
     </div>
   </section>`;
@@ -61,20 +63,35 @@ function experienceRows(rows) {
   </article>`).join('')}</div>`;
 }
 
+function stats() {
+  return `<dl class="portfolio-stats">${portfolioStats.map((stat) => `<div><dt class="eyebrow muted">${escape(stat.label)}</dt><dd>${escape(stat.value)}</dd></div>`).join('')}</dl>`;
+}
+
+function heroBackground() {
+  const opacity = Number.isFinite(heroMedia.overlayOpacity) ? Math.max(0, Math.min(1, heroMedia.overlayOpacity)) : 0.62;
+  return `<div class="hero-backdrop" aria-hidden="true">
+    ${heroMedia.poster ? `<img class="hero-poster" src="${escape(heroMedia.poster)}" alt="">` : ''}
+    ${heroMedia.video ? `<video class="hero-video" data-src="${escape(heroMedia.video)}" muted loop playsinline preload="none" tabindex="-1"></video>` : ''}
+    <div class="hero-shade" style="opacity: ${opacity}"></div>
+    ${heroMedia.poster ? '' : '<span class="hero-media-placeholder">*Background video*</span>'}
+  </div>`;
+}
+
 function homePage() {
   return `<section class="hero section-dark">
+    ${heroBackground()}
     <div class="container hero-container">
-      <div class="hero-top"><p class="eyebrow hero-enter">Independent portfolio</p><p class="eyebrow muted hero-enter">Form / Light / Motion</p></div>
+      <div class="hero-top"><p class="eyebrow hero-enter">Creative portfolio</p><p class="eyebrow muted hero-enter">Design / Motion / Digital</p></div>
       <div class="hero-grid">
         <div class="hero-name"><p class="eyebrow accent hero-enter">${t.hero.eyebrow}</p><h1 aria-label="${escape(profile.name)}"><span class="name-line"><span class="name-outline hero-title">${escape(profile.firstName)}</span></span><span class="name-line"><span class="hero-title">${escape(profile.lastName)}<span class="accent">.</span></span></span></h1></div>
-        <div class="hero-art hero-enter">${placeholder('*Hero artwork*', 'hero-artwork')}<p class="eyebrow muted hero-art-caption">An automotive perspective</p></div>
       </div>
-      <div class="hero-bottom"><div class="hero-actions hero-enter">${link('/works', t.hero.workLink, 'button button-accent')}${link('/about', t.hero.aboutLink, 'button button-outline')}</div><p class="hero-introduction hero-enter">${lines(t.hero.introduction)}</p></div>
-      <a class="scroll-cue eyebrow" href="#introduction">Scroll to explore <span aria-hidden="true">↓</span></a>
+      <ul class="hero-disciplines hero-enter">${t.hero.disciplines.map((discipline) => `<li>${escape(discipline)}</li>`).join('')}</ul>
+      <div class="hero-bottom"><div class="hero-actions hero-enter">${link('/works', t.hero.workLink, 'button button-accent')}${link('/about', t.hero.aboutLink, 'button button-outline')}</div><p class="hero-introduction hero-enter">${escape(t.hero.introduction)}</p></div>
+      <div class="hero-footer"><a class="scroll-cue eyebrow" href="#introduction">Scroll to explore <span aria-hidden="true">↓</span></a>${heroMedia.video ? '<button class="video-toggle" type="button" aria-label="Pause background video" hidden>Pause video</button>' : ''}</div>
     </div>
   </section>
   <section id="introduction" class="section section-white intro-section">
-    <div class="container intro-grid"><div data-reveal><p class="eyebrow muted">${t.introduction.label}</p><h2>${lines(t.introduction.title)}</h2></div><div class="intro-copy" data-reveal><p>${t.introduction.body}</p>${link('/about', 'Meet the artist')}</div></div>
+    <div class="container intro-grid"><div data-reveal><p class="eyebrow muted">${t.introduction.label}</p><h2>${lines(t.introduction.title)}</h2></div><div class="intro-copy" data-reveal><p>${t.introduction.body}</p>${stats()}${link('/about', 'Behind the work')}</div></div>
   </section>
   <section class="section section-light">
     <div class="container"><div class="section-heading" data-reveal><div><p class="eyebrow muted">01 — Portfolio</p><h2>${t.works.title}<span class="accent-dot">.</span></h2></div>${link('/works', t.works.all)}</div><div class="project-grid">${projects.map(projectCard).join('')}</div></div>
@@ -92,7 +109,7 @@ function worksPage() {
 }
 
 function aboutPage() {
-  return `${pageHeading(t.about.label, t.about.title)}<section class="section section-white"><div class="container about-grid"><div data-reveal>${placeholder('*Portrait / studio image*', 'portrait-placeholder')}</div><div class="about-copy" data-reveal><p class="eyebrow muted">${escape(profile.name)} / The artist</p><h2>Cars. Creativity.<br>A closer look.</h2><p>${t.introduction.body}</p><p>${escape(t.about.biography)}</p><div class="inline-actions">${link('/cv', 'View my CV', 'button button-dark')}${link('/contact', 'Get in touch')}</div></div></div></section>${skillsSection()}`;
+  return `${pageHeading(t.about.label, t.about.title)}<section class="section section-white"><div class="container about-grid"><div data-reveal>${placeholder('*Portrait / studio image*', 'portrait-placeholder')}</div><div class="about-copy" data-reveal><p class="eyebrow muted">Design / Motion / Digital</p><h2>${lines(t.about.heading)}</h2><p>${escape(t.about.body)}</p>${stats()}<p>${escape(t.about.biography)}</p><div class="inline-actions">${link('/cv', 'View my CV', 'button button-dark')}${link('/contact', 'Get in touch')}</div></div></div></section>${skillsSection()}`;
 }
 
 function cvPage() {
@@ -100,7 +117,7 @@ function cvPage() {
   <section class="section section-dark"><div class="container"><div class="section-heading" data-reveal><div><p class="eyebrow accent">01 — Professional background</p><h2>${t.cv.experience}<span class="accent">.</span></h2></div></div>${experienceRows(cv.experience)}</div></section>
   <section class="section section-light"><div class="container"><div class="section-heading" data-reveal><div><p class="eyebrow muted">02 — Learning</p><h2>${t.cv.education}.</h2></div></div>${experienceRows(cv.education)}</div></section>
   <section class="section section-white"><div class="container"><div class="section-heading" data-reveal><div><p class="eyebrow muted">03 — Recognition</p><h2>${t.cv.awards}.</h2></div></div>${experienceRows(cv.awards)}</div></section>
-  ${skillsSection({ showCvLink: false })}<section class="section section-white"><div class="container languages-section"><div data-reveal><p class="eyebrow muted">Communication</p><h2>${t.cv.languages}.</h2></div><div data-reveal><dl class="language-list">${cv.languages.map((language) => `<div><dt>${escape(language.name)}</dt><dd class="eyebrow">${escape(language.level)}</dd></div>`).join('')}</dl><p class="language-note eyebrow muted">${t.cv.languageNote}</p></div></div></section>
+  ${skillsSection()}<section class="section section-white"><div class="container languages-section"><div data-reveal><p class="eyebrow muted">Communication</p><h2>${t.cv.languages}.</h2></div><div data-reveal><dl class="language-list">${cv.languages.map((language) => `<div><dt>${escape(language.name)}</dt><dd class="eyebrow">${escape(language.level)}</dd></div>`).join('')}</dl><p class="language-note eyebrow muted">${t.cv.languageNote}</p></div></div></section>
   <section class="section section-dark"><div class="container"><div class="section-heading" data-reveal><div><p class="eyebrow accent">The approach</p><h2>${t.cv.approach}.</h2></div></div><div class="approach-grid">${cv.approach.map((item) => `<article data-reveal><h3>${escape(item.title)}</h3><p>${escape(item.description)}</p></article>`).join('')}</div></div></section>
   <section class="section section-light"><div class="container cv-interests" data-reveal><div><p class="eyebrow muted">${t.cv.interests}</p><ul class="interests-list">${cv.interests.map((interest) => `<li>${escape(interest)}</li>`).join('')}</ul></div><p class="eyebrow muted">${t.cv.drivingLicence}<span class="licence-value">${escape(cv.drivingLicence)}</span></p></div></section>`;
 }
@@ -165,6 +182,8 @@ function currentPath() {
 
 function render({ moveFocus = false, resetScroll = false } = {}) {
   const version = ++renderVersion;
+  cleanupHeroVideo();
+  cleanupHeroVideo = () => {};
   animationContext?.revert();
   animationContext = undefined;
   gsap.set(main, { clearProps: 'opacity,transform' });
@@ -172,7 +191,7 @@ function render({ moveFocus = false, resetScroll = false } = {}) {
   let page;
   let title;
   const pages = {
-    '/': [homePage, 'Automotive CGI & 3D Art'],
+    '/': [homePage, 'Design, 3D & Motion'],
     '/works': [worksPage, 'Works'],
     '/about': [aboutPage, 'About'],
     '/cv': [cvPage, 'CV'],
@@ -193,6 +212,7 @@ function render({ moveFocus = false, resetScroll = false } = {}) {
   if (moveFocus) main.focus({ preventScroll: true });
   requestAnimationFrame(() => {
     if (version !== renderVersion) return;
+    cleanupHeroVideo = attachHeroVideo(main, reducedMotion);
     animatePage();
     if (window.location.hash) {
       const target = document.getElementById(window.location.hash.slice(1));
