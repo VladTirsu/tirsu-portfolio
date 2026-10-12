@@ -110,8 +110,7 @@ function contactRows() {
     { name: 'Email', url: profile.email ? `mailto:${profile.email}` : '', value: profile.email || '*Email address*' },
     ...(profile.phone ? [{ name: 'Phone', url: profile.phoneHref, value: profile.phone }] : []),
     { name: 'Behance', url: profile.behance, value: 'vlad_t18' },
-    { name: 'Instagram', url: profile.instagram, value: profile.instagram ? 'View profile' : '*Instagram profile*' },
-    { name: 'LinkedIn', url: profile.linkedin, value: profile.linkedin ? 'View profile' : '*LinkedIn profile*' },
+    { name: 'Instagram', url: profile.instagram, value: profile.instagram ? '@vlad.t18' : '*Instagram profile*' },
   ];
   return `<div class="contact-list">${channels.map(({ name, url, value }) => {
     const body = `<span class="eyebrow contact-label">${name}</span><span class="contact-value">${escape(value)}</span>${url ? arrow('diagonal') : '<span class="contact-pending eyebrow">To be added</span>'}`;

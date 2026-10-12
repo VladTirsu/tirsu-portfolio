@@ -10,8 +10,7 @@ export const profile = {
   phone: '+43 664 146 9222',
   phoneHref: 'tel:+436641469222',
   location: 'Moldova & Austria',
-  instagram: '',
-  linkedin: '',
+  instagram: 'https://www.instagram.com/vlad.t18/',
 };
 
 export const projects = [1, 2, 3, 4].map((number) => ({
@@ -34,13 +33,31 @@ export const skills = [
   'Cinema 4D',
   'Maya',
   'Adobe Creative Suite',
+  'Photoshop',
+  'Figma',
+  'Illustrator',
+  'InDesign',
   'Microsoft tools',
   '3D design',
+  'Substance 3D Painter',
   'CGI & rendering',
   'Video editing',
+  'Premiere Pro',
+  'After Effects',
+  'Media Encoder',
+  'DaVinci Resolve',
   'Photography',
   'Graphic & product design',
   'UX/UI & web design',
+  'HTML',
+  'JS',
+  'CSS',
+  'Arduino',
+  'Kotlin',
+  'Python',
+  'C#',
+
+  
 ];
 
 // Professional content from Vlad's supplied CV and subsequent work details.
@@ -67,14 +84,14 @@ export const cv = {
       title: 'Graphic designer',
       place: 'Software Mind',
       location: 'Chișinău, Moldova',
-      description: '',
+      description: 'Developing comprehensive brand identities by creating distinctive logos and detailed style guides, designing marketing materials, such as brochures, infographics, and digital banners, which significantly boosted campaign engagement, effectiveness and collaborating seamlessly ',
     },
     {
-      period: 'Jun 2021 — Sep 2024',
+      period: 'Jun 2021 — Sep 2026',
       title: 'Multidisciplinary designer & videographer',
       place: 'Andrew Rayel',
       location: 'Chișinău, Moldova',
-      description: 'Graphic and product design, 3D motion design, merchandise design, video editing, videography, UX/UI, and website design.',
+      description: 'Graphic and product design, 3D motion design, VJ loops production, merchandise design, video editing, videography, UX/UI, and website design.',
     },
   ],
   education: [
@@ -106,6 +123,7 @@ export const cv = {
     { name: 'English', level: 'C1' },
     { name: 'German', level: 'B2' },
     { name: 'Russian', level: 'A2' },
+    { name: 'Spanish', level: 'A1' },
   ],
   approach: [
     {
@@ -139,7 +157,7 @@ export const copy = {
     about: { title: 'Behind the work.', label: 'About me', biography: 'My background spans graphic and product design, 3D motion, video, photography, and UX/UI. I’m currently studying Creative Computing at USTP in St. Pölten, building on professional work with Andrew Rayel and Software Mind.' },
     cv: { title: 'The CV.', label: 'Background & experience', experience: 'Experience', education: 'Education', awards: 'Recognition', skills: 'Tools & skills', languages: 'Languages', approach: 'How I work', interests: 'Beyond the work', drivingLicence: 'Driving licence', languageNote: 'CEFR levels for English, German, and Russian' },
     contact: { title: 'Let’s talk.', label: 'Contact', introduction: 'Have a project in mind, a collaboration to discuss, or a question about the work? Choose a way to get in touch.' },
-    footer: { title: 'Let’s make\nsomething move.', action: 'Get in touch' },
+    footer: { title: 'Let’s work\ntogether.', action: 'Contact Me' },
     project: { back: 'All works', client: 'Client', role: 'Role', software: 'Software', year: 'Year', next: 'Next project', backBottom: 'Back to projects' },
   },
 };
