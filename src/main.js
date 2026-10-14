@@ -6,12 +6,14 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { profile, projects, skills, cv, copy, heroMedia, portfolioStats } from './content.js';
 import { attachHeroVideo } from './hero-video.js';
 import { sitePath, routePath } from './routing.js';
+import { legalPages, legalUpdated } from './legal.js';
 import './style.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const t = copy.en;
 const href = (path) => sitePath(path, import.meta.env.BASE_URL);
+const notices = legalPages(profile);
 const main = document.querySelector('#main');
 const header = document.querySelector('#header');
 const footer = document.querySelector('#footer');
@@ -156,6 +158,11 @@ function notFoundPage() {
   return `${pageHeading('404 / Page not found', 'Wrong turn.', 'This page doesn’t exist. Let’s get you back to the work.')}<section class="section section-light"><div class="container">${link('/works', 'Explore works', 'button button-dark')}</div></section>`;
 }
 
+function legalPage(path) {
+  const notice = notices[path];
+  return `${pageHeading(notice.label, notice.title, '', 'legal-heading')}<section class="section section-white"><div class="container legal-content"><p class="eyebrow muted">Updated ${escape(legalUpdated)}</p>${notice.sections.map((section, index) => `<section aria-labelledby="legal-section-${index}"><h2 id="legal-section-${index}">${escape(section.title)}</h2>${section.paragraphs.map((paragraph) => `<p>${escape(paragraph)}</p>`).join('')}${section.links ? `<ul class="legal-links">${section.links.map((item) => `<li><a href="${escape(href(item.href))}">${escape(item.label)}</a></li>`).join('')}</ul>` : ''}</section>`).join('')}</div></section>`;
+}
+
 function renderHeader(path) {
   const current = path.startsWith('/projects/') ? '/works' : path;
   header.innerHTML = `<div class="header-inner"><a class="brand-link" href="${href('/')}" aria-label="${escape(profile.name)} — home">Creative Portfolio</a><nav aria-label="Main navigation">${Object.entries(t.nav).map(([key, label]) => {
@@ -165,7 +172,7 @@ function renderHeader(path) {
 }
 
 function renderFooter(path) {
-  footer.innerHTML = `<div class="container"><div class="footer-cta" data-reveal><h2>${lines(t.footer.title)}</h2>${path === '/contact' ? link(profile.behance, 'View Behance', 'button button-accent', 'diagonal') : link('/contact', t.footer.action, 'button button-accent')}</div><div class="footer-bottom"><a href="${profile.behance}" target="_blank" rel="noopener noreferrer" class="eyebrow footer-social">Behance ${arrow('diagonal')}</a><a href="${href('/cv')}" class="eyebrow footer-social">CV ${arrow('diagonal')}</a><p class="eyebrow footer-credit">© ${new Date().getFullYear()} ${escape(profile.name)}</p><a href="#main" class="back-top eyebrow">Back to top ↑</a></div></div>`;
+  footer.innerHTML = `<div class="container"><div class="footer-cta" data-reveal><h2>${lines(t.footer.title)}</h2>${path === '/contact' ? link(profile.behance, 'View Behance', 'button button-accent', 'diagonal') : link('/contact', t.footer.action, 'button button-accent')}</div><div class="footer-bottom"><a href="${profile.behance}" target="_blank" rel="noopener noreferrer" class="eyebrow footer-social">Behance ${arrow('diagonal')}</a><a href="${href('/cv')}" class="eyebrow footer-social">CV ${arrow('diagonal')}</a><a href="${href('/impressum')}" class="eyebrow footer-social" ${path === '/impressum' ? 'aria-current="page"' : ''}>Impressum</a><a href="${href('/privacy')}" class="eyebrow footer-social" ${path === '/privacy' ? 'aria-current="page"' : ''}>Privacy</a><p class="eyebrow footer-credit">© ${new Date().getFullYear()} ${escape(profile.name)}</p><a href="#main" class="back-top eyebrow">Back to top ↑</a></div></div>`;
 }
 
 function animatePage() {
@@ -202,6 +209,8 @@ function render({ moveFocus = false, resetScroll = false } = {}) {
     '/about': [aboutPage, 'About'],
     '/cv': [cvPage, 'CV'],
     '/contact': [contactPage, 'Contact'],
+    '/impressum': [() => legalPage('/impressum'), 'Impressum'],
+    '/privacy': [() => legalPage('/privacy'), 'Privacy'],
   };
   if (pages[path]) {
     [page, title] = pages[path];

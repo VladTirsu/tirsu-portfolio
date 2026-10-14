@@ -43,7 +43,7 @@ Add new page paths in `src/routing.js` alongside their renderer in `src/main.js`
 
 Edit `src/content.js`:
 
-- `profile`: name, specialty, location, email, phone, Behance, Instagram, and portrait. The portrait imports `photos/cvphoto.jpg` and appears on About and CV; Vite includes it in the production build. Add only public contact details you want displayed.
+- `profile`: name, specialty, professional location, residence for legal disclosures, email, phone, Behance, Instagram, and portrait. The portrait imports `photos/cvphoto.jpg` and appears on About and CV; Vite includes it in the production build. Vlad confirmed he took the portrait himself. Add only public contact details you want displayed.
 - `heroMedia`: the video fills the entire opening hero behind its text, with a black overlay. Put your video under `public/videos/`, then set `video` to a path such as `/videos/hero.mp4`. Keep it empty until a real file exists. Set an optional `poster` image for reduced-motion and playback fallback. `overlayOpacity` controls the black overlay (default 0.62). The current empty source renders a text placeholder and requests no missing video file.
 - `portfolioStats`: the supplied five years of experience and 10+ projects, displayed on Home and About.
 - `projects`: project titles, descriptions, credits, year, and images. Put image files under `public/artworks/` and replace null entries with paths such as `/artworks/project-1-01.webp`. The first image is also the overview cover. Use artwork you have permission to publish.
@@ -51,6 +51,12 @@ Edit `src/content.js`:
 - `copy.en`: English interface copy. Add equivalent language objects for German, Russian, and Romanian when ready. Language switching is not implemented yet.
 
 The header uses a Creative Portfolio wordmark. The About and CV pages display the supplied portrait; video media currently uses a text placeholder. Their render locations are in `src/main.js`. Decorative video playback is managed in `src/hero-video.js`. Typography, colours, spacing, and interactions are in `src/style.css`.
+
+## Legal notices
+
+`src/legal.js` contains the Impressum and privacy notice, linked from every footer. They describe a personal portfolio for potential employers, its owner in Sankt Pölten, GitHub Pages hosting, Gmail correspondence, retention criteria and data-subject rights. Update these statements and the notice date when actual practices change, particularly before adding paid services, analytics, forms, embeds or new providers. The disclosures address the identified gaps; they are not a legal certification or a trademark clearance for the domain.
+
+Vite preserves dependency copyright and licence comments in the production JavaScript. Font licence files remain in `public/font-licenses/`.
 
 ## Behaviour to check
 

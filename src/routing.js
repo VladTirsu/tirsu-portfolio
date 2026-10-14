@@ -1,5 +1,5 @@
 export const projectNumbers = [1, 2, 3, 4];
-export const pagePaths = ['/works', '/about', '/cv', '/contact'];
+export const pagePaths = ['/works', '/about', '/cv', '/contact', '/impressum', '/privacy'];
 export const projectPaths = projectNumbers.map((number) => `/projects/project-${number}`);
 
 export function sitePath(path, base = '/') {

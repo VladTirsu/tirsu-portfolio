@@ -14,6 +14,7 @@ export const profile = {
   phone: '+43 664 146 9222',
   phoneHref: 'tel:+436641469222',
   location: 'Moldova & Austria',
+  residence: 'Sankt Pölten, Austria',
   instagram: 'https://www.instagram.com/vlad.t18/',
 };
 
@@ -178,7 +179,7 @@ export const copy = {
       biography: 'Alongside professional practice, ongoing studies in Creative Computing at USTP in St. Pölten connect design with technical development.',
     },
     cv: { title: 'The CV.', label: 'Background & experience', experience: 'Experience', education: 'Education', awards: 'Recognition', skills: 'Tools & skills', languages: 'Languages', approach: 'How I work', interests: 'Beyond the work', drivingLicence: 'Driving licence', languageNote: 'CEFR levels for additional languages' },
-    contact: { title: 'Let’s talk.', label: 'Contact', introduction: 'Have a project in mind, a collaboration to discuss, or a question about the work? Choose a way to get in touch.' },
+    contact: { title: 'Let’s talk.', label: 'Contact', introduction: 'Have an employment opportunity in mind or a question about my work? Choose a way to get in touch.' },
     footer: { title: 'Let’s\ncollaborate.', action: 'Contact Me' },
     project: { back: 'All works', client: 'Client', role: 'Role', software: 'Software', year: 'Year', next: 'Next project', backBottom: 'Back to projects' },
   },
