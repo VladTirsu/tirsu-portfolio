@@ -175,7 +175,7 @@ export const copy = {
     },
     cv: { title: 'The CV.', label: 'Background & experience', experience: 'Experience', education: 'Education', awards: 'Recognition', skills: 'Tools & skills', languages: 'Languages', approach: 'How I work', interests: 'Beyond the work', drivingLicence: 'Driving licence', languageNote: 'CEFR levels for additional languages' },
     contact: { title: 'Let’s talk.', label: 'Contact', introduction: 'Have a project in mind, a collaboration to discuss, or a question about the work? Choose a way to get in touch.' },
-    footer: { title: 'Let’s work\ntogether.', action: 'Contact Me' },
+    footer: { title: 'Let’s\ncollaborate.', action: 'Contact Me' },
     project: { back: 'All works', client: 'Client', role: 'Role', software: 'Software', year: 'Year', next: 'Next project', backBottom: 'Back to projects' },
   },
 };
