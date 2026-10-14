@@ -7,7 +7,7 @@ A responsive multidisciplinary portfolio built with Vite, JavaScript, CSS, and G
 Use Node.js 22.12 or newer. From the existing checkout:
 
 ```sh
-cd /workspace/tirsu-portfolio
+cd tirsu-portfolio
 npm ci
 npm run dev -- --port 5173 --strictPort
 ```
@@ -21,20 +21,36 @@ npm run build
 npm run preview -- --port 4173 --strictPort
 ```
 
-Deploy `dist/` to a static host. Routes use the browser History API, so the host must serve `index.html` for non-file paths such as `/cv` and `/projects/project-1`. `public/_redirects` includes that fallback for hosts supporting the Netlify-style redirects format. Other hosts need an equivalent SPA fallback. GitHub Pages needs additional routing configuration and is not supported out of the box.
+Deploy `dist/` to a static host. The build creates an `index.html` in each page and project directory, so direct links and refreshes work on GitHub Pages. It also creates a `404.html` for unknown routes. `public/_redirects` supplies the SPA fallback for hosts supporting the Netlify-style redirects format.
+
+### GitHub Pages
+
+In the repository's **Settings → Pages**, select **GitHub Actions** as the source. `.github/workflows/deploy.yml` tests, builds, and publishes the site whenever `main` receives a push. It can also run manually from the Actions tab. The workflow obtains the correct URL prefix from GitHub, including `/tirsu-portfolio/` for this repository, and supports a custom domain later.
+
+To test the repository URL prefix locally:
+
+```sh
+npm test
+npm run build -- --base /tirsu-portfolio/
+npm run preview -- --base /tirsu-portfolio/ --port 4173 --strictPort
+```
+
+Open `http://localhost:4173/tirsu-portfolio/`. Test direct links to `about/`, `cv/`, and `projects/project-1/`, as well as navigation and browser back/forward. Public media paths such as `/videos/hero.mp4` and `/artworks/project-1-01.webp` automatically receive the deployment prefix.
+
+Add new page paths in `src/routing.js` alongside their renderer in `src/main.js`. Project numbers in `src/routing.js` feed both the content and the generated project directories. Push future updates to `main` to publish them.
 
 ## Update the content
 
 Edit `src/content.js`:
 
-- `profile`: name, specialty, location, email, phone, Behance, and Instagram. Add only public contact details you want displayed.
+- `profile`: name, specialty, location, email, phone, Behance, Instagram, and portrait. The portrait imports `photos/cvphoto.jpg` and appears on About and CV; Vite includes it in the production build. Add only public contact details you want displayed.
 - `heroMedia`: the video fills the entire opening hero behind its text, with a black overlay. Put your video under `public/videos/`, then set `video` to a path such as `/videos/hero.mp4`. Keep it empty until a real file exists. Set an optional `poster` image for reduced-motion and playback fallback. `overlayOpacity` controls the black overlay (default 0.62). The current empty source renders a text placeholder and requests no missing video file.
 - `portfolioStats`: the supplied five years of experience and 10+ projects, displayed on Home and About.
 - `projects`: project titles, descriptions, credits, year, and images. Put image files under `public/artworks/` and replace null entries with paths such as `/artworks/project-1-01.webp`. The first image is also the overview cover. Use artwork you have permission to publish.
 - `skills` and `cv`: tools, experience, education, recognition, summary, language levels, working approach, interests, and driving licence. CV content lives on `/cv`; there is no download control. It reflects the supplied CV, including the current degree marked as in progress. The original PDF, street address, date of birth, and demographic fields are not served by the website.
 - `copy.en`: English interface copy. Add equivalent language objects for German, Russian, and Romanian when ready. Language switching is not implemented yet.
 
-The header uses a Creative Portfolio wordmark. Video/portrait media currently use text placeholders. Their render locations are in `src/main.js`. Decorative video playback is managed in `src/hero-video.js`. Typography, colours, spacing, and interactions are in `src/style.css`.
+The header uses a Creative Portfolio wordmark. The About and CV pages display the supplied portrait; video media currently uses a text placeholder. Their render locations are in `src/main.js`. Decorative video playback is managed in `src/hero-video.js`. Typography, colours, spacing, and interactions are in `src/style.css`.
 
 ## Behaviour to check
 

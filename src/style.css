@@ -152,7 +152,8 @@
   .page-heading h1 { font-size: clamp(65px, 9vw, 158px); line-height: 1.04; margin-top: 24px; }
   .page-description { max-width: 630px; margin-top: 35px; color: #b6b6ae; font-size: 17px; line-height: 1.8; }
   .index-bar { display: flex; align-items: center; justify-content: space-between; padding-bottom: 28px; margin-bottom: 38px; border-bottom: 1px solid var(--line); }
-  .portrait-placeholder { width: 100%; min-height: 380px; aspect-ratio: 0.85; }
+  .profile-portrait { display: block; width: 100%; height: auto; object-fit: cover; object-position: center top; }
+  .about-portrait { aspect-ratio: 0.85; }
   .about-copy .eyebrow { margin-bottom: 22px; }
   .about-copy h2 { font-size: clamp(28px, 3.4vw, 65px); margin-bottom: 30px; }
   .about-copy > p:not(.eyebrow) { color: #61615c; line-height: 1.9; font-size: 16px; margin-bottom: 23px; }
@@ -164,10 +165,12 @@
   .portfolio-stats + .text-link { margin-top: 0; }
   .placeholder-copy { font-family: var(--mono); color: var(--grey); font-size: 14px; line-height: 1.9; }
   .cv-introduction { display: grid; grid-template-columns: 1fr 2fr; gap: 28px 48px; }
-  .cv-introduction > .eyebrow { padding-top: 10px; }
-  .cv-introduction > h2 { font-size: clamp(36px, 4vw, 64px); }
-  .cv-summary { grid-column: 2; max-width: 700px; font-size: 17px; line-height: 1.9; color: #61615c; }
-  .cv-contact { grid-column: 2; display: flex; flex-wrap: wrap; gap: 16px 24px; align-items: center; border-top: 1px solid var(--line); padding-top: 24px; }
+  .cv-profile > .eyebrow { padding-top: 10px; margin-bottom: 24px; }
+  .cv-portrait { max-width: 300px; aspect-ratio: 1; }
+  .cv-profile-copy { min-width: 0; }
+  .cv-profile-copy > h2 { font-size: clamp(36px, 4vw, 64px); }
+  .cv-summary { max-width: 700px; margin-top: 28px; font-size: 17px; line-height: 1.9; color: #61615c; }
+  .cv-contact { display: flex; flex-wrap: wrap; gap: 16px 24px; align-items: center; border-top: 1px solid var(--line); margin-top: 28px; padding-top: 24px; }
   .cv-contact > .eyebrow { flex-basis: 100%; }
   .cv-contact a { font-size: 13px; line-height: 1.7; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
   .cv-contact a:hover { border-color: var(--ink); }
@@ -298,13 +301,12 @@
     .page-heading { padding-block: 60px; }
     .page-heading h1 { font-size: clamp(50px, 10.2vw, 77px); margin-top: 20px; }
     .page-description { font-size: 15px; margin-top: 24px; }
-    .portrait-placeholder { width: 100%; min-height: 300px; aspect-ratio: 1.1; }
+    .about-portrait { aspect-ratio: 1; }
     .about-copy > p:not(.eyebrow) { font-size: 15px; }
     .about-copy h2 { font-size: clamp(28px, 7.8vw, 38px); }
     .cv-introduction { grid-template-columns: 1fr; gap: 20px; }
-    .cv-summary, .cv-contact { grid-column: 1; }
     .cv-summary { font-size: 15px; }
-    .cv-introduction > h2 { font-size: 38px; }
+    .cv-profile-copy > h2 { font-size: 38px; }
     .cv-row { grid-template-columns: 1fr; gap: 15px; padding-block: 28px; }
     .cv-place { text-align: left; padding-top: 0; }
     .cv-detail { font-size: 11px; }

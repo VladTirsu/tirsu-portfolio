@@ -5,11 +5,13 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { profile, projects, skills, cv, copy, heroMedia, portfolioStats } from './content.js';
 import { attachHeroVideo } from './hero-video.js';
+import { sitePath, routePath } from './routing.js';
 import './style.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const t = copy.en;
+const href = (path) => sitePath(path, import.meta.env.BASE_URL);
 const main = document.querySelector('#main');
 const header = document.querySelector('#header');
 const footer = document.querySelector('#footer');
@@ -25,24 +27,28 @@ const arrow = (direction = 'right') => {
   const path = direction === 'left' ? 'M20 12H4m7-7-7 7 7 7' : direction === 'diagonal' ? 'M5 19 19 5M5 5h14v14' : 'M4 12h16m-7-7 7 7-7 7';
   return `<span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="${path}" /></svg></span>`;
 };
-const link = (href, label, className = 'text-link', direction = 'right') => `<a class="${className}" href="${href}">${direction === 'left' ? `${arrow(direction)} ${escape(label)}` : `${escape(label)} ${arrow(direction)}`}</a>`;
+const link = (path, label, className = 'text-link', direction = 'right') => `<a class="${className}" href="${escape(href(path))}">${direction === 'left' ? `${arrow(direction)} ${escape(label)}` : `${escape(label)} ${arrow(direction)}`}</a>`;
 
 function placeholder(label, className = '', extra = '') {
   return `<div class="artwork-placeholder ${className}" ${extra}><span class="placeholder-label">${escape(label)}</span></div>`;
 }
 
+function portrait(className) {
+  return `<img class="profile-portrait ${className}" src="${escape(profile.portrait)}" alt="Portrait of ${escape(profile.name)}" width="1500" height="1500" decoding="async">`;
+}
+
 function media(project, index, className = '') {
   const src = project.images[index];
   return src
-    ? `<img class="artwork-image ${className}" src="${escape(src)}" alt="${escape(project.title)} — artwork ${index + 1}" loading="lazy" decoding="async">`
+    ? `<img class="artwork-image ${className}" src="${escape(href(src))}" alt="${escape(project.title)} — artwork ${index + 1}" loading="lazy" decoding="async">`
     : placeholder(`*Artwork ${String(index + 1).padStart(2, '0')}*`, className);
 }
 
 function projectCard(project) {
   const cover = project.images[0]
-    ? `<img class="card-media" src="${escape(project.images[0])}" alt="${escape(project.title)}" loading="lazy" decoding="async">`
+    ? `<img class="card-media" src="${escape(href(project.images[0]))}" alt="${escape(project.title)}" loading="lazy" decoding="async">`
     : placeholder(project.cover, 'card-media');
-  return `<a class="project-card" href="/projects/${project.id}" data-reveal>
+  return `<a class="project-card" href="${href(`/projects/${project.id}`)}" data-reveal>
     <div class="card-frame"><span class="card-number">${project.number}</span>${cover}<span class="card-open" aria-hidden="true">${arrow('diagonal')}</span></div>
     <div class="card-caption"><div><p class="eyebrow muted">${escape(project.category)}</p><h3>${escape(project.title)}</h3></div>${arrow()}</div>
   </a>`;
@@ -70,8 +76,8 @@ function stats() {
 function heroBackground() {
   const opacity = Number.isFinite(heroMedia.overlayOpacity) ? Math.max(0, Math.min(1, heroMedia.overlayOpacity)) : 0.62;
   return `<div class="hero-backdrop" aria-hidden="true">
-    ${heroMedia.poster ? `<img class="hero-poster" src="${escape(heroMedia.poster)}" alt="">` : ''}
-    ${heroMedia.video ? `<video class="hero-video" data-src="${escape(heroMedia.video)}" muted loop playsinline preload="none" tabindex="-1"></video>` : ''}
+    ${heroMedia.poster ? `<img class="hero-poster" src="${escape(href(heroMedia.poster))}" alt="">` : ''}
+    ${heroMedia.video ? `<video class="hero-video" data-src="${escape(href(heroMedia.video))}" muted loop playsinline preload="none" tabindex="-1"></video>` : ''}
     <div class="hero-shade" style="opacity: ${opacity}"></div>
     ${heroMedia.poster ? '' : '<span class="hero-media-placeholder">*Background video*</span>'}
   </div>`;
@@ -109,11 +115,11 @@ function worksPage() {
 }
 
 function aboutPage() {
-  return `${pageHeading(t.about.label, t.about.title)}<section class="section section-white"><div class="container about-grid"><div data-reveal>${placeholder('*Portrait / studio image*', 'portrait-placeholder')}</div><div class="about-copy" data-reveal><p class="eyebrow muted">Design / Motion / Digital</p><h2>${lines(t.about.heading)}</h2><p>${escape(t.about.body)}</p>${stats()}<p>${escape(t.about.biography)}</p><div class="inline-actions">${link('/cv', 'View my CV', 'button button-dark')}${link('/contact', 'Get in touch')}</div></div></div></section>${skillsSection()}`;
+  return `${pageHeading(t.about.label, t.about.title)}<section class="section section-white"><div class="container about-grid"><div data-reveal>${portrait('about-portrait')}</div><div class="about-copy" data-reveal><p class="eyebrow muted">Design / Motion / Digital</p><h2>${lines(t.about.heading)}</h2><p>${escape(t.about.body)}</p>${stats()}<p>${escape(t.about.biography)}</p><div class="inline-actions">${link('/cv', 'View my CV', 'button button-dark')}${link('/contact', 'Get in touch')}</div></div></div></section>${skillsSection()}`;
 }
 
 function cvPage() {
-  return `${pageHeading(t.cv.label, t.cv.title, profile.specialty)}<section class="section section-white"><div class="container cv-introduction" data-reveal><p class="eyebrow muted">Profile</p><h2>${escape(profile.name)}</h2><p class="cv-summary">${escape(cv.summary)}</p><div class="cv-contact"><span class="eyebrow muted">${escape(profile.location)}</span><a href="mailto:${escape(profile.email)}">${escape(profile.email)}</a><a href="${escape(profile.phoneHref)}">${escape(profile.phone)}</a></div></div></section>
+  return `${pageHeading(t.cv.label, t.cv.title, profile.specialty)}<section class="section section-white"><div class="container cv-introduction" data-reveal><div class="cv-profile"><p class="eyebrow muted">Profile</p>${portrait('cv-portrait')}</div><div class="cv-profile-copy"><h2>${escape(profile.name)}</h2><p class="cv-summary">${escape(cv.summary)}</p><div class="cv-contact"><span class="eyebrow muted">${escape(profile.location)}</span><a href="mailto:${escape(profile.email)}">${escape(profile.email)}</a><a href="${escape(profile.phoneHref)}">${escape(profile.phone)}</a></div></div></div></section>
   <section class="section section-dark"><div class="container"><div class="section-heading" data-reveal><div><p class="eyebrow accent">01 — Professional background</p><h2>${t.cv.experience}<span class="accent">.</span></h2></div></div>${experienceRows(cv.experience)}</div></section>
   <section class="section section-light"><div class="container"><div class="section-heading" data-reveal><div><p class="eyebrow muted">02 — Learning</p><h2>${t.cv.education}.</h2></div></div>${experienceRows(cv.education)}</div></section>
   <section class="section section-white"><div class="container"><div class="section-heading" data-reveal><div><p class="eyebrow muted">03 — Recognition</p><h2>${t.cv.awards}.</h2></div></div>${experienceRows(cv.awards)}</div></section>
@@ -143,7 +149,7 @@ function projectPage(project) {
   const next = projects[(projects.indexOf(project) + 1) % projects.length];
   return `<section class="project-heading section-dark"><div class="container"><div data-reveal>${link('/works', t.project.back, 'back-link text-link', 'left')}</div><p class="eyebrow accent project-type" data-reveal>${escape(project.category)}</p><h1 data-reveal>${escape(project.title)}<span class="accent">.</span></h1><dl class="project-metadata" data-reveal>${[['client', project.client], ['role', project.role], ['software', project.software], ['year', project.year]].map(([label, value]) => `<div><dt class="eyebrow muted">${t.project[label]}</dt><dd>${escape(value)}</dd></div>`).join('')}</dl></div></section>
   <section class="project-gallery-section section-dark"><div class="container"><div class="project-gallery"><figure class="gallery-lead" data-reveal>${media(project, 0)}<figcaption class="eyebrow muted">01 / ${escape(project.title)}</figcaption></figure><figure data-reveal>${media(project, 1)}<figcaption class="eyebrow muted">02 / ${escape(project.title)}</figcaption></figure><figure data-reveal>${media(project, 2)}<figcaption class="eyebrow muted">03 / ${escape(project.title)}</figcaption></figure></div><div class="project-story" data-reveal><p class="eyebrow accent">Behind the artwork</p><p>${escape(project.description)}</p></div><div class="back-to-projects" data-reveal>${link('/works', t.project.backBottom, 'text-link', 'left')}</div></div></section>
-  <a class="next-project section-dark" href="/projects/${next.id}"><div class="container"><div><p class="eyebrow accent">${t.project.next} / ${next.number}</p><h2>${escape(next.title)}.</h2></div>${arrow()}</div></a>`;
+  <a class="next-project section-dark" href="${href(`/projects/${next.id}`)}"><div class="container"><div><p class="eyebrow accent">${t.project.next} / ${next.number}</p><h2>${escape(next.title)}.</h2></div>${arrow()}</div></a>`;
 }
 
 function notFoundPage() {
@@ -152,14 +158,14 @@ function notFoundPage() {
 
 function renderHeader(path) {
   const current = path.startsWith('/projects/') ? '/works' : path;
-  header.innerHTML = `<div class="header-inner"><a class="brand-link" href="/" aria-label="${escape(profile.name)} — home">Creative Portfolio</a><nav aria-label="Main navigation">${Object.entries(t.nav).map(([key, label]) => {
-    const href = key === 'home' ? '/' : `/${key}`;
-    return `<a class="nav-link" href="${href}" ${current === href ? 'aria-current="page"' : ''}>${label}</a>`;
+  header.innerHTML = `<div class="header-inner"><a class="brand-link" href="${href('/')}" aria-label="${escape(profile.name)} — home">Creative Portfolio</a><nav aria-label="Main navigation">${Object.entries(t.nav).map(([key, label]) => {
+    const path = key === 'home' ? '/' : `/${key}`;
+    return `<a class="nav-link" href="${href(path)}" ${current === path ? 'aria-current="page"' : ''}>${label}</a>`;
   }).join('')}</nav></div>`;
 }
 
 function renderFooter(path) {
-  footer.innerHTML = `<div class="container"><div class="footer-cta" data-reveal><h2>${lines(t.footer.title)}</h2>${path === '/contact' ? link(profile.behance, 'View Behance', 'button button-accent', 'diagonal') : link('/contact', t.footer.action, 'button button-accent')}</div><div class="footer-bottom"><a href="${profile.behance}" target="_blank" rel="noopener noreferrer" class="eyebrow footer-social">Behance ${arrow('diagonal')}</a><a href="/cv" class="eyebrow footer-social">CV ${arrow('diagonal')}</a><p class="eyebrow footer-credit">© ${new Date().getFullYear()} ${escape(profile.name)}</p><a href="#main" class="back-top eyebrow">Back to top ↑</a></div></div>`;
+  footer.innerHTML = `<div class="container"><div class="footer-cta" data-reveal><h2>${lines(t.footer.title)}</h2>${path === '/contact' ? link(profile.behance, 'View Behance', 'button button-accent', 'diagonal') : link('/contact', t.footer.action, 'button button-accent')}</div><div class="footer-bottom"><a href="${profile.behance}" target="_blank" rel="noopener noreferrer" class="eyebrow footer-social">Behance ${arrow('diagonal')}</a><a href="${href('/cv')}" class="eyebrow footer-social">CV ${arrow('diagonal')}</a><p class="eyebrow footer-credit">© ${new Date().getFullYear()} ${escape(profile.name)}</p><a href="#main" class="back-top eyebrow">Back to top ↑</a></div></div>`;
 }
 
 function animatePage() {
@@ -177,7 +183,7 @@ function animatePage() {
 }
 
 function currentPath() {
-  return window.location.pathname.replace(/\/+$/, '') || '/';
+  return routePath(window.location.pathname, import.meta.env.BASE_URL) ?? '/404';
 }
 
 function render({ moveFocus = false, resetScroll = false } = {}) {
@@ -236,6 +242,7 @@ document.addEventListener('click', (event) => {
   if (!anchor || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || anchor.target === '_blank' || anchor.hasAttribute('download')) return;
   const url = new URL(anchor.href, window.location.origin);
   if (url.origin !== window.location.origin) return;
+  if (routePath(url.pathname, import.meta.env.BASE_URL) === null) return;
   if (url.pathname === window.location.pathname && url.hash) {
     const target = document.getElementById(url.hash.slice(1));
     if (target) {

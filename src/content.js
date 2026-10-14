@@ -1,10 +1,14 @@
+import portrait from '../photos/cvphoto.jpg';
+import { projectNumbers } from './routing.js';
+
 // Keep content separate from rendering. Additional languages can use this shape.
 // Contact URLs stay empty until Vlad supplies them; never invent contact details.
 export const profile = {
   name: 'Vlad Tîrșu',
   firstName: 'Vlad',
   lastName: 'Tîrșu',
-  specialty: 'Graphic design, 3D & visual storytelling',
+  portrait,
+  specialty: '',
   behance: 'https://www.behance.net/vlad_t18',
   email: 'vladtirsu1803@gmail.com',
   phone: '+43 664 146 9222',
@@ -26,7 +30,7 @@ export const portfolioStats = [
   { value: '10+', label: 'Projects' },
 ];
 
-export const projects = [1, 2, 3, 4].map((number) => ({
+export const projects = projectNumbers.map((number) => ({
   id: `project-${number}`,
   number: String(number).padStart(2, '0'),
   title: `Project ${number}`,
@@ -162,7 +166,7 @@ export const copy = {
     },
     introduction: {
       label: 'The practice',
-      title: 'Creative thinking.\nConsidered execution.',
+      title: 'Creative thinking.\nMade with care.',
       body: 'Five years of professional experience across graphic and product design, 3D visualization, motion, and video production. Each project brings together a clear visual direction and careful execution, creating work for brands, products, and digital experiences.',
     },
     works: { title: 'Selected works', all: 'All projects', indexTitle: 'The works.', description: 'A selection of projects across graphic design, 3D visualization, motion, video, and digital experiences.' },
