@@ -12,6 +12,8 @@
     --font: 'Inter Variable', Arial, sans-serif;
     --mono: 'IBM Plex Mono', monospace;
     --gutter: clamp(24px, 7vw, 140px);
+    --header-height: 88px;
+    --safe-area-top: env(safe-area-inset-top, 0px);
     font-family: var(--font);
     color: var(--ink);
     background: var(--ink);
@@ -21,6 +23,7 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; }
+  html, body { background: var(--ink); }
   body { margin: 0; }
   a { color: inherit; text-decoration: none; }
   button, input, textarea { font: inherit; }
@@ -32,7 +35,7 @@
   .section-light :focus-visible, .section-white :focus-visible { outline-color: var(--ink); }
   main:focus { outline: none; }
   main { min-height: 55vh; }
-  html { scroll-padding-top: 100px; }
+  html { scroll-padding-top: calc(var(--header-height) + var(--safe-area-top) + 12px); }
   .outline-definitions { position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none; }
   noscript { display: block; padding: 24px; background: var(--yellow); color: var(--ink); }
 }
@@ -43,11 +46,12 @@
   .section-dark { background: var(--ink); color: var(--paper); }
   .section-light { background: var(--paper); color: var(--ink); }
   .section-white { background: var(--white); color: var(--ink); }
-  .site-header { position: sticky; top: 0; z-index: 30; height: 88px; color: var(--paper); background: #111111f5; border-bottom: 1px solid #ffffff17; backdrop-filter: blur(12px); }
+  /* A solid viewport-edge background lets Safari tint its toolbar to the header. */
+  .site-header { position: sticky; top: 0; z-index: 30; height: calc(var(--header-height) + var(--safe-area-top)); padding-top: var(--safe-area-top); color: var(--paper); background: var(--ink); border-bottom: 1px solid #ffffff17; }
   .header-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; padding-inline: var(--gutter); gap: 32px; }
   .site-header nav { display: flex; gap: clamp(5px, 1.7vw, 30px); }
-  .hero { position: relative; isolation: isolate; min-height: calc(100svh - 88px); overflow: clip; }
-  .hero-container { position: relative; z-index: 3; display: flex; flex-direction: column; min-height: calc(100svh - 88px); padding-top: 32px; padding-bottom: 28px; }
+  .hero { position: relative; isolation: isolate; min-height: calc(100svh - var(--header-height) - var(--safe-area-top)); overflow: clip; }
+  .hero-container { position: relative; z-index: 3; display: flex; flex-direction: column; min-height: calc(100svh - var(--header-height) - var(--safe-area-top)); padding-top: 32px; padding-bottom: 28px; }
   .hero-top { display: flex; justify-content: flex-end; align-items: center; gap: 20px; }
   .hero-grid { margin-top: auto; padding-top: clamp(100px, 18vh, 240px); }
   .hero-name { position: relative; z-index: 2; }
@@ -63,7 +67,7 @@
   .project-gallery-section { padding-top: 56px; }
   .project-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 24px; }
   .gallery-lead { grid-column: 1 / -1; }
-  .site-footer { padding-top: 96px; background: var(--charcoal); color: var(--white); }
+  .site-footer { padding-top: 96px; padding-bottom: env(safe-area-inset-bottom, 0px); background: var(--charcoal); color: var(--white); }
 }
 
 @layer components {
@@ -242,7 +246,9 @@
   .footer-cta h2 { font-size: clamp(48px, 6.3vw, 108px); line-height: 1; }
   .footer-cta > a { flex-shrink: 0; }
   .footer-bottom { display: flex; flex-wrap: wrap; align-items: center; gap: 20px 30px; padding-block: 30px; border-top: 1px solid #ffffff25; color: #a7a79f; }
-  .footer-credit { margin-left: auto; font-size: 9px; }
+  .footer-links { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 30px; }
+  .footer-meta { display: flex; align-items: baseline; justify-content: space-between; gap: 30px; margin-left: auto; }
+  .footer-credit { font-size: 9px; white-space: nowrap; }
   .footer-social { font-size: 10px; transition: color 200ms ease; }
   .footer-social:hover, .back-top:hover { color: var(--yellow); }
   .back-top { font-size: 9px; white-space: nowrap; }
@@ -264,15 +270,12 @@
   }
 
   @media (max-width: 760px) {
-    :root { --gutter: 24px; }
-    .site-header { height: 106px; }
+    :root { --gutter: 24px; --header-height: 106px; }
     .header-inner { flex-direction: column; align-items: stretch; justify-content: center; gap: 7px; }
     .brand-link { font-size: 10px; padding: 0; width: fit-content; }
     .site-header nav { justify-content: space-between; gap: 4px; }
     .nav-link { font-size: 10px; padding: 10px 4px; letter-spacing: 0.09em; }
     .nav-link[aria-current]::after { left: 4px; right: 4px; bottom: 1px; }
-    html { scroll-padding-top: 122px; }
-    .hero, .hero-container { min-height: calc(100svh - 106px); }
     .hero-container { padding-top: 24px; }
     .hero-top .eyebrow { font-size: 8px; letter-spacing: 0.07em; }
     .hero-grid { padding-top: 110px; }
@@ -348,9 +351,9 @@
     .site-footer { padding-top: 60px; }
     .footer-cta { flex-direction: column; align-items: start; gap: 32px; padding-bottom: 55px; }
     .footer-cta h2 { font-size: clamp(36px, 8.7vw, 60px); }
-    .footer-bottom { flex-wrap: wrap; gap: 22px; padding-block: 25px; }
-    .footer-credit { margin-left: 0; flex-basis: 100%; order: 2; }
-    .back-top { margin-left: auto; }
+    .footer-bottom { flex-direction: column; align-items: stretch; gap: 22px; padding-block: 25px; }
+    .footer-links { justify-content: space-between; gap: 12px; }
+    .footer-meta { margin-left: 0; gap: 16px; }
   }
 
   @media (max-width: 420px) {
