@@ -46,6 +46,27 @@ export const projects = projectNumbers.map((number) => ({
   images: [null, null, null],
 }));
 
+Object.assign(projects[0], {
+  title: 'Porsche 911 GT3 Photoshoot',
+  category: 'Automotive photography',
+  year: '2024',
+  client: 'Personal work',
+  role: 'Photographer',
+  software: 'Lightroom & Photoshop',
+  description: 'A personal shoot at a Porsche dealership in Chișinău, Moldova. I wanted to capture what caught my eye about this blue 911 GT3: the rear wing, the shape of the body, and the smaller details you notice when you get closer. The series moves from a wide rear view to the wheels, Porsche crest, and dashboard. I edited the photos in Lightroom and Photoshop, keeping the blue paint and the contrast between the car and the showroom at the heart of the set.',
+  images: [
+    { name: 'rear', width: 2000, height: 1125, alt: 'Blue Porsche 911 GT3 from the rear, with its wing and taillights inside the Chișinău showroom', caption: 'The rear view' },
+    { name: 'wheel', width: 2000, height: 1334, alt: 'Rear wheel and blue bodywork of the Porsche 911 GT3 beside the showroom windows', caption: 'Wheel & bodywork' },
+    { name: 'wheel-detail', width: 2000, height: 1334, alt: 'Close-up of the Porsche GT3 alloy wheel, brake disc, and Porsche centre cap', caption: 'A closer look' },
+    { name: 'crest', width: 2000, height: 1334, alt: 'Porsche crest on the blue bonnet of the 911 GT3', caption: 'The Porsche crest' },
+    { name: 'dashboard', width: 2000, height: 1125, alt: 'Porsche 911 GT3 dashboard with the rev counter and GT3 instrument display', caption: 'Behind the wheel' },
+  ].map(({ name, ...image }) => ({
+    ...image,
+    src: `/artworks/porsche-gt3/${name}-2000.webp`,
+    sources: [640, 1200, 2000].map((width) => ({ src: `/artworks/porsche-gt3/${name}-${width}.webp`, width })),
+  })),
+});
+
 export const skills = [
   'Blender',
   'Cinema 4D',

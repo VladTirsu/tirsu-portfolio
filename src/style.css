@@ -137,6 +137,8 @@
   .project-card:nth-child(2) .artwork-placeholder { background: #dcdcd6; }
   .project-card:nth-child(3) .artwork-placeholder { background: #deded8; }
   .project-card:nth-child(4) .artwork-placeholder { background: #e7e7e2; }
+  .project-card[data-project="project-1"] .card-media { object-position: left center; transform-origin: left center; }
+  .project-card[data-project="project-1"] .card-number { color: #fff; text-shadow: 0 1px 4px #0009; }
   .card-number { position: absolute; top: 18px; left: 18px; z-index: 2; font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; }
   .card-open { position: absolute; right: 0; bottom: 0; display: grid; place-items: center; width: 54px; height: 54px; background: var(--ink); color: var(--white); font-size: 24px; transform: translateY(100%); transition: transform 300ms ease; }
   .project-card:hover .card-media, .project-card:focus-visible .card-media { transform: scale(1.045); }
@@ -231,6 +233,7 @@
   .project-gallery .artwork-placeholder { aspect-ratio: 1.15; color: #a7a79f; border-color: #ffffff22; background: #1d1d1d; }
   .project-gallery .gallery-lead .artwork-placeholder { aspect-ratio: 1.8; }
   .project-gallery .artwork-image { width: 100%; height: auto; }
+  .project-gallery[data-project="project-1"] figure:not(.gallery-lead) .artwork-image { aspect-ratio: 3 / 2; object-fit: cover; object-position: center; }
   .project-gallery figcaption { padding-top: 16px; font-size: 10px; }
   .project-story { display: grid; grid-template-columns: 1fr 2fr; gap: 40px; border-top: 1px solid #ffffff25; padding-top: 40px; margin-top: 70px; }
   .project-story > p:last-child { max-width: 700px; font-family: var(--mono); font-size: 14px; line-height: 1.9; color: #a7a79f; }
