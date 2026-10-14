@@ -138,7 +138,7 @@ export const cv = {
     { name: 'Romanian', level: 'Native' },
     { name: 'English', level: 'C1' },
     { name: 'German', level: 'B2' },
-    { name: 'Russian', level: 'A2' },
+    { name: 'Russian', level: 'B1' },
     { name: 'Spanish', level: 'A1' },
   ],
   approach: [
