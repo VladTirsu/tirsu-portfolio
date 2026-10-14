@@ -30,6 +30,8 @@
   h1, h2, h3, p, figure, ul, dl, dd { margin: 0; }
   ul { padding: 0; list-style: none; }
   img { display: block; max-width: 100%; }
+  :root[data-page="/projects/project-1"] { --yellow: #018ada; }
+
   ::selection { background: var(--yellow); color: var(--ink); }
   :focus-visible { outline: 3px solid var(--yellow); outline-offset: 5px; }
   .section-light :focus-visible, .section-white :focus-visible { outline-color: var(--ink); }
@@ -78,7 +80,7 @@
   .muted { color: var(--grey); }
   .section-dark .muted { color: #9e9e97; }
   .accent { color: var(--yellow); }
-  .accent-dot { color: #9c7900; }
+  .accent-dot { color: var(--yellow); }
   .arrow { display: inline-block; line-height: 1; font-family: var(--font); font-weight: 500; transition: transform 220ms ease; }
   .arrow svg { display: inline-block; width: 1em; height: 1em; vertical-align: middle; }
   a:hover > .arrow, a:focus-visible > .arrow { transform: translateX(5px); }

@@ -208,6 +208,7 @@ function render({ moveFocus = false, resetScroll = false } = {}) {
   animationContext = undefined;
   gsap.set(main, { clearProps: 'opacity,transform' });
   const path = currentPath();
+  document.documentElement.dataset.page = path;
   let page;
   let title;
   const pages = {
