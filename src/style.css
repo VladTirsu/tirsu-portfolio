@@ -123,7 +123,6 @@
   .section-heading .eyebrow { margin-bottom: 17px; }
   .artwork-placeholder { position: relative; display: grid; place-items: center; border: 1px solid var(--line); background: #e4e4df; overflow: hidden; }
   .placeholder-label { font-family: var(--mono); font-size: 13px; font-weight: 400; letter-spacing: 0.04em; text-align: center; padding: 20px; color: inherit; }
-  .placeholder-corner { position: absolute; bottom: 14px; right: 17px; font-family: var(--mono); font-size: 18px; font-weight: 400; color: currentColor; opacity: 0.5; }
   .project-card { display: block; min-width: 0; }
   .card-frame { position: relative; aspect-ratio: 1.5; overflow: hidden; }
   .card-media { display: grid; width: 100%; height: 100%; object-fit: cover; transition: transform 600ms cubic-bezier(0.2, 0.65, 0.3, 1), background-color 400ms ease; }

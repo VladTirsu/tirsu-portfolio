@@ -28,7 +28,7 @@ const arrow = (direction = 'right') => {
 const link = (href, label, className = 'text-link', direction = 'right') => `<a class="${className}" href="${href}">${direction === 'left' ? `${arrow(direction)} ${escape(label)}` : `${escape(label)} ${arrow(direction)}`}</a>`;
 
 function placeholder(label, className = '', extra = '') {
-  return `<div class="artwork-placeholder ${className}" ${extra}><span class="placeholder-label">${escape(label)}</span><span class="placeholder-corner" aria-hidden="true">+</span></div>`;
+  return `<div class="artwork-placeholder ${className}" ${extra}><span class="placeholder-label">${escape(label)}</span></div>`;
 }
 
 function media(project, index, className = '') {
