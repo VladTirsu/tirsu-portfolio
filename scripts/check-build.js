@@ -3,6 +3,7 @@ import { readFile, readdir, stat } from 'node:fs/promises';
 import { pagePaths, projectPaths } from '../src/routing.js';
 
 const html = await readFile('dist/index.html', 'utf8');
+assert(!html.includes('/tirsu-portfolio/'), 'Production assets must use the custom domain root.');
 for (const path of [...pagePaths, ...projectPaths]) {
   assert.equal(await readFile(`dist${path}/index.html`, 'utf8'), html, `Missing or stale page entry: ${path}`);
 }

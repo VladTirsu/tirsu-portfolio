@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import { pagePaths, projectPaths } from './src/routing.js';
 
 export default defineConfig({
+  base: '/',
   esbuild: { legalComments: 'inline' },
   plugins: [{
     name: 'static-page-entries',

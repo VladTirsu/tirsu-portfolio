@@ -25,17 +25,18 @@ Deploy `dist/` to a static host. The build creates an `index.html` in each page 
 
 ### GitHub Pages
 
-In the repository's **Settings → Pages**, select **GitHub Actions** as the source. `.github/workflows/deploy.yml` tests, builds, and publishes the site whenever `main` receives a push. It can also run manually from the Actions tab. The workflow obtains the correct URL prefix from GitHub, including `/tirsu-portfolio/` for this repository, and supports a custom domain later.
+In the repository's **Settings → Pages**, select **GitHub Actions** as the source and set the custom domain to `tirsu.net`. `.github/workflows/deploy.yml` tests, builds, and publishes the site whenever `main` receives a push. It can also run manually from the Actions tab. Production uses `/` as its base, so page links and assets load directly from `https://tirsu.net/`.
 
-To test the repository URL prefix locally:
+To test the production build locally:
 
 ```sh
 npm test
-npm run build -- --base /tirsu-portfolio/
-npm run preview -- --base /tirsu-portfolio/ --port 4173 --strictPort
+npm run build
+npm run check:build
+npm run preview -- --port 4173 --strictPort
 ```
 
-Open `http://localhost:4173/tirsu-portfolio/`. Test direct links to `about/`, `cv/`, and `projects/project-1/`, as well as navigation and browser back/forward. Public media paths such as `/videos/hero.mp4` and `/artworks/project-1-01.webp` automatically receive the deployment prefix.
+Open `http://localhost:4173/`. Test direct links to `/about/`, `/cv/`, and `/projects/project-1/`, as well as navigation and browser back/forward. Public media paths such as `/videos/hero.mp4` and `/artworks/project-1-01.webp` load from the domain root. GitHub Actions deployments use the custom domain setting in GitHub; a `CNAME` file is not required for this workflow.
 
 Add new page paths in `src/routing.js` alongside their renderer in `src/main.js`. Project numbers in `src/routing.js` feed both the content and the generated project directories. Push future updates to `main` to publish them.
 
