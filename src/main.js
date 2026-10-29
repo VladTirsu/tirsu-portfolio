@@ -154,10 +154,25 @@ function contactPage() {
   return `${pageHeading(t.contact.label, t.contact.title, t.contact.introduction)}<section class="section section-white"><div class="container">${contactRows()}<p class="contact-note eyebrow muted" data-reveal>Find the current portfolio on Behance.</p></div></section>`;
 }
 
+function brandStory(project) {
+  const figure = (index, className = '') => `<figure class="${className}" data-reveal>${media(project, index)}<figcaption class="eyebrow muted">${String(index + 1).padStart(2, '0')} / ${escape(project.images[index].caption)}</figcaption></figure>`;
+  return `<div class="brand-case-study">
+    ${figure(0, 'brand-cover')}
+    <p class="brand-introduction" data-reveal>${escape(project.description)}</p>
+    ${project.story.map((story, index) => `<div class="brand-story-row ${index === 1 ? 'brand-story-reverse' : ''}">
+      ${figure(index + 1)}
+      <div class="brand-story-copy" data-reveal><p class="eyebrow accent">${escape(story.label)}</p><h2>${escape(story.title)}</h2><p>${escape(story.body)}</p></div>
+    </div>`).join('')}
+    <div class="brand-details">${figure(3)}${figure(4)}</div>
+    ${figure(5, 'brand-merch')}
+    ${figure(6, 'brand-flags')}
+  </div>`;
+}
+
 function projectPage(project) {
   const next = projects[(projects.indexOf(project) + 1) % projects.length];
   return `<section class="project-heading section-dark"><div class="container"><div data-reveal>${link('/works', t.project.back, 'back-link text-link', 'left')}</div><p class="eyebrow accent project-type" data-reveal>${escape(project.category)}</p><h1 data-reveal>${escape(project.title)}<span class="accent">.</span></h1><dl class="project-metadata" data-reveal>${[['client', project.client], ['role', project.role], ['software', project.software], ['year', project.year]].map(([label, value]) => `<div><dt class="eyebrow muted">${t.project[label]}</dt><dd>${escape(value)}</dd></div>`).join('')}</dl></div></section>
-  <section class="project-gallery-section section-dark"><div class="container"><div class="project-gallery" data-project="${escape(project.id)}">${project.images.map((image, index) => `<figure${index === 0 || image?.wide ? ' class="gallery-lead"' : ''} data-reveal>${media(project, index)}<figcaption class="eyebrow muted">${String(index + 1).padStart(2, '0')} / ${escape(image?.caption || project.title)}</figcaption></figure>`).join('')}</div><div class="project-story" data-reveal><p class="eyebrow accent">Behind the artwork</p><p>${escape(project.description)}</p></div><div class="back-to-projects" data-reveal>${link('/works', t.project.backBottom, 'text-link', 'left')}</div></div></section>
+  <section class="project-gallery-section section-dark"><div class="container">${project.layout === 'brand-story' ? brandStory(project) : `<div class="project-gallery" data-project="${escape(project.id)}">${project.images.map((image, index) => `<figure${index === 0 || image?.wide ? ' class="gallery-lead"' : ''} data-reveal>${media(project, index)}<figcaption class="eyebrow muted">${String(index + 1).padStart(2, '0')} / ${escape(image?.caption || project.title)}</figcaption></figure>`).join('')}</div><div class="project-story" data-reveal><p class="eyebrow accent">Behind the artwork</p><p>${escape(project.description)}</p></div>`}<div class="back-to-projects" data-reveal>${link('/works', t.project.backBottom, 'text-link', 'left')}</div></div></section>
   <a class="next-project section-dark" href="${href(`/projects/${next.id}`)}"><div class="container"><div><p class="eyebrow accent">${t.project.next} / ${next.number}</p><h2>${escape(next.title)}.</h2></div>${arrow()}</div></a>`;
 }
 

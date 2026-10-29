@@ -70,6 +70,35 @@ Object.assign(projects[0], {
   })),
 });
 
+Object.assign(projects[1], {
+  title: 'Visual Identity for a Car Rental Company',
+  category: 'Brand design & visual communication',
+  client: 'Level Auto Rental',
+  role: 'Brand & automotive livery designer',
+  software: 'Illustrator, Photoshop, Blender & Adobe Substance',
+  year: '2026',
+  layout: 'brand-story',
+  coverImageIndex: 0,
+  description: 'A visual world for Level Auto Rental, bringing together vehicle graphics, event materials and printed details. A consistent use of dark tones, confident typography and the Level monogram connects the brand across every application.',
+  story: [
+    { label: '01 — On the road', title: 'A presence in motion.', body: 'For Level Auto Rental, I designed visual materials that bring the company’s identity into everyday spaces. The vehicle livery pairs a bold gold wordmark with a repeating monogram pattern, giving the car a distinctive presence while following the lines of its bodywork.' },
+    { label: '02 — Beyond the vehicle', title: 'One brand. Every touchpoint.', body: 'The same visual language continues through the event stand, business cards and outdoor flags. I adapted the graphics to different scales and formats, from a small printed card to a full event setup, keeping the company’s name and identity clear throughout.' },
+  ],
+  images: [
+    { name: 'design-cls', width: 2000, height: 1500, alt: 'Black Mercedes CLS with gold Level Auto Rental branding and monogram livery', caption: 'Mercedes CLS — livery concept' },
+    { name: 'car-livery', width: 2000, height: 2667, alt: 'Level Auto Rental gold vehicle graphics applied to a black Mercedes outdoors', caption: 'The livery on the road' },
+    { name: 'stand', width: 2000, height: 2667, alt: 'Level Auto Rental branded event canopy, backdrop and display table', caption: 'The brand in a physical space' },
+    { name: 'laptop', width: 2000, height: 1333, alt: 'Vehicle illustrations in Adobe Illustrator on a laptop screen', caption: 'From the design process' },
+    { name: 'business-card', width: 2000, height: 1333, alt: 'Dark Level Auto Rental business card with the Level monogram', caption: 'Business card design' },
+    { name: 'merch', wide: true, width: 2000, height: 1500, alt: 'Black T-shirt with the Level Auto Rental logo printed on the back', caption: 'Branded merchandise' },
+    { name: 'flags', wide: true, width: 2000, height: 1333, alt: 'Three black and white Level Auto Rental flags with the Drive Your Level slogan', caption: 'Outdoor flags — Drive Your Level' },
+  ].map(({ name, ...image }) => ({
+    ...image,
+    src: `/artworks/level-auto/${name}-2000.webp`,
+    sources: [640, 1200, 2000].map((width) => ({ src: `/artworks/level-auto/${name}-${width}.webp`, width })),
+  })),
+});
+
 export const skills = [
   'Blender',
   'Cinema 4D',
