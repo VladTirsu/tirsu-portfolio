@@ -52,6 +52,8 @@
   .site-header { position: sticky; top: 0; z-index: 30; height: calc(var(--header-height) + var(--safe-area-top)); padding-top: var(--safe-area-top); color: var(--paper); background: var(--ink); border-bottom: 1px solid #ffffff17; }
   .header-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; padding-inline: var(--gutter); gap: 32px; }
   .site-header nav { display: flex; gap: clamp(5px, 1.7vw, 30px); }
+  .header-inner { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 20px; }
+  .site-header nav { justify-content: center; gap: clamp(0px, 0.6vw, 12px); }
   .hero { position: relative; isolation: isolate; min-height: calc(100svh - var(--header-height) - var(--safe-area-top)); overflow: clip; }
   .hero-container { position: relative; z-index: 3; display: flex; flex-direction: column; min-height: calc(100svh - var(--header-height) - var(--safe-area-top)); padding-top: 32px; padding-bottom: 28px; }
   .hero-top { display: flex; justify-content: flex-end; align-items: center; gap: 20px; }
@@ -74,6 +76,7 @@
 
 @layer components {
   h1, h2, h3 { font-weight: 850; text-transform: uppercase; letter-spacing: -0.048em; }
+  h2, h3 { overflow-wrap: anywhere; }
   h2 { font-size: clamp(36px, 4.6vw, 80px); line-height: 1.03; }
   h3 { font-size: clamp(19px, 1.6vw, 27px); line-height: 1.25; letter-spacing: -0.025em; }
   .eyebrow { font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.14em; font-size: 11px; line-height: 1.6; }
@@ -85,6 +88,11 @@
   .arrow svg { display: inline-block; width: 1em; height: 1em; vertical-align: middle; }
   a:hover > .arrow, a:focus-visible > .arrow { transform: translateX(5px); }
   .brand-link { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; font-weight: 700; text-transform: uppercase; white-space: nowrap; padding-block: 10px; }
+  .language-switch { display: flex; gap: 2px; align-items: center; }
+  .language-switch a { padding: 8px 6px; font: 11px var(--mono); color: #aaa; border-bottom: 2px solid transparent; }
+  .language-switch a[aria-current] { color: var(--paper); border-color: var(--yellow); }
+  .language-switch a:hover { color: var(--yellow); }
+  .page-heading h1, .project-heading h1, .next-project h2, .footer-cta h2 { overflow-wrap: anywhere; }
   .nav-link { position: relative; font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; font-weight: 700; padding: 12px 15px; transition: color 200ms ease, background-color 200ms ease; }
   .nav-link[aria-current]::after { content: ''; position: absolute; bottom: 3px; left: 15px; right: 15px; height: 2px; background: var(--yellow); }
   .nav-link:hover, .nav-link:focus-visible { color: var(--ink); background: var(--paper); }
@@ -162,7 +170,7 @@
   .profile-portrait { display: block; width: 100%; height: auto; object-fit: cover; object-position: center top; }
   .about-portrait { aspect-ratio: 0.85; }
   .about-copy .eyebrow { margin-bottom: 22px; }
-  .about-copy h2 { font-size: clamp(28px, 3.4vw, 65px); margin-bottom: 30px; }
+  .about-copy h2 { font-size: clamp(28px, 3.4vw, 65px); margin-bottom: 30px; overflow-wrap: anywhere; }
   .about-copy > p:not(.eyebrow) { color: #61615c; line-height: 1.9; font-size: 16px; margin-bottom: 23px; }
   .about-copy .inline-actions { margin-top: 32px; }
   .portfolio-stats { display: flex; flex-wrap: wrap; gap: 32px 48px; margin-block: 28px; }
@@ -277,6 +285,11 @@
   }
 
   @media (max-width: 1050px) {
+    :root { --header-height: 118px; }
+    .header-inner { grid-template-columns: minmax(0, 1fr) auto; row-gap: 4px; align-content: center; }
+    .brand-link { grid-column: 1; grid-row: 1; }
+    .language-switch { grid-column: 2; grid-row: 1; }
+    .site-header nav { grid-column: 1 / -1; grid-row: 2; justify-content: space-between; }
     .hero-introduction { max-width: 310px; font-size: 12px; }
     .hero-actions { gap: 12px; }
     .hero-actions .button { gap: 15px; padding-inline: 19px; font-size: 10px; }
@@ -287,10 +300,11 @@
 
   @media (max-width: 760px) {
     :root { --gutter: 24px; --header-height: 106px; }
-    .header-inner { flex-direction: column; align-items: stretch; justify-content: center; gap: 7px; }
+    .header-inner { grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 7px 12px; }
+    .language-switch a { font-size: 10px; padding: 7px 5px; }
     .brand-link { font-size: 10px; padding: 0; width: fit-content; }
     .site-header nav { justify-content: space-between; gap: 4px; }
-    .nav-link { font-size: 10px; padding: 10px 4px; letter-spacing: 0.09em; }
+    .nav-link { font-size: clamp(8px, 2.35vw, 10px); padding: 10px 2px; letter-spacing: 0.025em; }
     .nav-link[aria-current]::after { left: 4px; right: 4px; bottom: 1px; }
     .hero-container { padding-top: 24px; }
     .hero-top .eyebrow { font-size: 8px; letter-spacing: 0.07em; }

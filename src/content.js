@@ -1,7 +1,7 @@
 import portrait from '../photos/cvphoto.jpg';
 import { projectNumbers } from './routing.js';
 
-// Keep content separate from rendering. Additional languages can use this shape.
+// English is the source content. Keep corresponding translations in translations.js.
 // Contact URLs stay empty until Vlad supplies them; never invent contact details.
 export const profile = {
   name: 'Vlad Tîrșu',

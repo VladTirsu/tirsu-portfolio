@@ -7,12 +7,14 @@ import { profile, projects, skills, cv, copy, heroMedia, portfolioStats } from '
 import { attachHeroVideo } from './hero-video.js';
 import { sitePath, routePath } from './routing.js';
 import { legalPages, legalUpdated } from './legal.js';
+import { languages, getLanguage, languagePath, translate, localizeElement } from './i18n.js';
 import './style.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const t = copy.en;
-const href = (path) => sitePath(path, import.meta.env.BASE_URL);
+let language = getLanguage(window.location.search);
+const href = (path) => sitePath(languagePath(path, language), import.meta.env.BASE_URL);
 const notices = legalPages(profile);
 const main = document.querySelector('#main');
 const header = document.querySelector('#header');
@@ -190,7 +192,7 @@ function renderHeader(path) {
   header.innerHTML = `<div class="header-inner"><a class="brand-link" href="${href('/')}" aria-label="${escape(profile.name)} — home">Creative Portfolio</a><nav aria-label="Main navigation">${Object.entries(t.nav).map(([key, label]) => {
     const path = key === 'home' ? '/' : `/${key}`;
     return `<a class="nav-link" href="${href(path)}" ${current === path ? 'aria-current="page"' : ''}>${label}</a>`;
-  }).join('')}</nav></div>`;
+  }).join('')}</nav><div class="language-switch" role="group" aria-label="Language">${Object.entries(languages).map(([code, name]) => `<a href="${escape(sitePath(languagePath(path, code), import.meta.env.BASE_URL))}" lang="${code}" hreflang="${code}" title="${name}"${language === code ? ' aria-current="true"' : ''}>${code.toUpperCase()}</a>`).join('')}</div></div>`;
 }
 
 function renderFooter(path) {
@@ -217,6 +219,8 @@ function currentPath() {
 
 function render({ moveFocus = false, resetScroll = false } = {}) {
   const version = ++renderVersion;
+  language = getLanguage(window.location.search);
+  document.documentElement.lang = language;
   cleanupHeroVideo();
   cleanupHeroVideo = () => {};
   animationContext?.revert();
@@ -245,12 +249,16 @@ function render({ moveFocus = false, resetScroll = false } = {}) {
   main.innerHTML = page();
   renderHeader(path);
   renderFooter(path);
-  document.title = `${title} — ${profile.name}`;
+  for (const root of [main, header, footer]) localizeElement(root, language);
+  document.title = `${translate(title, language)} — ${profile.name}`;
+  const description = document.querySelector('meta[name="description"]');
+  description.dataset.english ||= description.content;
+  description.content = translate(description.dataset.english, language);
   if (resetScroll) window.scrollTo({ top: 0, behavior: 'instant' });
   if (moveFocus) main.focus({ preventScroll: true });
   requestAnimationFrame(() => {
     if (version !== renderVersion) return;
-    cleanupHeroVideo = attachHeroVideo(main, reducedMotion);
+    cleanupHeroVideo = attachHeroVideo(main, reducedMotion, (value) => translate(value, language));
     animatePage();
     if (window.location.hash) {
       const target = document.getElementById(window.location.hash.slice(1));
@@ -259,13 +267,13 @@ function render({ moveFocus = false, resetScroll = false } = {}) {
   });
 }
 
-function navigate(url) {
+function navigate(url, { resetScroll = true } = {}) {
   transition?.kill();
   const complete = () => {
     window.history.pushState({}, '', `${url.pathname}${url.search}${url.hash}`);
-    render({ moveFocus: true, resetScroll: true });
+    render({ moveFocus: true, resetScroll });
   };
-  if (reducedMotion.matches) complete();
+  if (reducedMotion.matches || !resetScroll) complete();
   else transition = gsap.to(main, { opacity: 0, y: -8, duration: 0.16, ease: 'power1.in', onComplete: complete });
 }
 
@@ -275,7 +283,7 @@ document.addEventListener('click', (event) => {
   const url = new URL(anchor.href, window.location.origin);
   if (url.origin !== window.location.origin) return;
   if (routePath(url.pathname, import.meta.env.BASE_URL) === null) return;
-  if (url.pathname === window.location.pathname && url.hash) {
+  if (url.pathname === window.location.pathname && url.search === window.location.search && url.hash) {
     const target = document.getElementById(url.hash.slice(1));
     if (target) {
       event.preventDefault();
@@ -285,11 +293,11 @@ document.addEventListener('click', (event) => {
     return;
   }
   event.preventDefault();
-  if (url.pathname === window.location.pathname && !url.hash) {
+  if (url.pathname === window.location.pathname && url.search === window.location.search && !url.hash) {
     window.scrollTo({ top: 0, behavior: reducedMotion.matches ? 'instant' : 'smooth' });
     return;
   }
-  navigate(url);
+  navigate(url, { resetScroll: !anchor.closest('.language-switch') });
 });
 
 window.addEventListener('popstate', () => {

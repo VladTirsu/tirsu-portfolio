@@ -1,5 +1,5 @@
 // Decorative, muted playback. Motion preferences take precedence over autoplay.
-export function attachHeroVideo(root, reducedMotion) {
+export function attachHeroVideo(root, reducedMotion, translate = (value) => value) {
   const video = root.querySelector('.hero-video');
   const button = root.querySelector('.video-toggle');
   if (!video || reducedMotion.matches) return () => {};
@@ -12,8 +12,8 @@ export function attachHeroVideo(root, reducedMotion) {
   const updateButton = () => {
     if (disposed) return;
     const label = video.paused ? 'Play video' : 'Pause video';
-    button.textContent = label;
-    button.setAttribute('aria-label', `${video.paused ? 'Play' : 'Pause'} background video`);
+    button.textContent = translate(label);
+    button.setAttribute('aria-label', translate(`${video.paused ? 'Play' : 'Pause'} background video`));
   };
   const play = () => {
     video.play().catch(() => {

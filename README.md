@@ -71,3 +71,9 @@ Vite preserves dependency copyright and licence comments in the production JavaS
 - Email and phone open the mail and telephone handlers. Behance and Instagram open the supplied profiles.
 
 The visual implementation is original, informed by the supplied reference screenshots. It contains none of the reference site's code, branding, or artwork. Inter and IBM Plex Mono are supplied by Fontsource and distributed under the SIL Open Font License; their license files are included in `public/font-licenses/` and copied into the production build.
+
+## Languages
+
+English is the default. The header offers EN / RO / DE / RU. Romanian, German and Russian use `?lang=ro`, `?lang=de` and `?lang=ru` on the same page routes, for example `/projects/project-2?lang=de`. Internal navigation keeps the selected language; switching languages keeps the current page and scroll position. Refresh and browser history retain the URL language. No cookies or browser storage are used.
+
+`src/content.js` remains the English source. `src/translations.js` contains translations of visible text and image descriptions; brand, product, software and institution names retain their original spelling. Add translations there when changing English copy. `src/i18n.js` handles language selection, page URLs and text localization. The original image assets and static page entries are shared by all four versions.
