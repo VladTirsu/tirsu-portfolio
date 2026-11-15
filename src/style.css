@@ -207,7 +207,6 @@
   .language-list > div:last-child { border-bottom: 1px solid var(--line); }
   .language-list dt { font-size: 18px; font-weight: 650; }
   .languages-section .language-list dd { margin: 0; }
-  .languages-section .language-note { margin: 18px 0 0; font-size: 9px; }
   .approach-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 70px; }
   .approach-grid article { border-top: 1px solid #ffffff25; padding-top: 30px; }
   .approach-grid h3 { font-size: 22px; margin-bottom: 20px; }

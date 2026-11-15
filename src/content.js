@@ -237,7 +237,7 @@ export const copy = {
       body: 'Professional work spanning brand identities, product visuals, 3D imagery, motion design, and audiovisual production. More than ten projects have brought creative ideas into focus across digital channels and physical applications, with attention to both visual quality and the needs of each brief.',
       biography: 'Alongside professional practice, ongoing studies in Creative Computing at USTP in St. Pölten connect design with technical development.',
     },
-    cv: { title: 'The CV.', label: 'Background & experience', experience: 'Experience', education: 'Education', awards: 'Recognition', skills: 'Tools & skills', languages: 'Languages', approach: 'How I work', interests: 'Beyond the work', drivingLicence: 'Driving licence', languageNote: 'CEFR levels for additional languages' },
+    cv: { title: 'The CV.', label: 'Background & experience', experience: 'Experience', education: 'Education', awards: 'Recognition', skills: 'Tools & skills', languages: 'Languages', approach: 'How I work', interests: 'Beyond the work', drivingLicence: 'Driving licence' },
     contact: { title: 'Let’s talk.', label: 'Contact', introduction: 'Have an employment opportunity in mind or a question about my work? Choose a way to get in touch.' },
     footer: { title: 'Let’s\ncollaborate.', action: 'Contact Me' },
     project: { back: 'All works', client: 'Client', role: 'Role', software: 'Software', year: 'Year', next: 'Next project', backBottom: 'Back to projects' },
