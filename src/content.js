@@ -183,7 +183,7 @@ export const cv = {
     {
       period: 'Nov 2026',
       title: 'AWS DeepRacer Cup — Finalist',
-      place: 'AWS',
+      place: 'Amazon Web Services',
       description: 'Reached the finals of an autonomous racing competition where participants train AI models to control race cars that then navigate the track independently, without human input.',
     },
     {
