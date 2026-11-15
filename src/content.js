@@ -181,10 +181,16 @@ export const cv = {
   ],
   awards: [
     {
+      period: '',
+      title: 'AWS DeepRacer Cup — Finalist',
+      place: 'AWS',
+      description: 'Reached the finals of an autonomous racing competition where participants train AI models to control race cars that then navigate the track independently, without human input.',
+    },
+    {
       period: 'Mar 2023',
-      title: 'National Graphic Design Competition',
+      title: 'National Graphic Design Competition — Finalist',
       place: 'Tekwill',
-      description: 'Finalist.',
+      description: 'Selected as a finalist for a multidisciplinary design submission spanning logo design, a poster, product concepts, tote bag and apparel designs, and mockups.',
     },
   ],
   languages: [
