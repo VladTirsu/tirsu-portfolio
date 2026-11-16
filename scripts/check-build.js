@@ -24,7 +24,7 @@ for (const licence of ['inter-OFL.txt', 'ibm-plex-mono-OFL.txt']) {
   await stat(`dist/font-licenses/${licence}`);
 }
 for (const [, path] of html.matchAll(/(?:src|href)="([^"?#]+)"/g)) {
-  const asset = path.match(/\/(assets\/[^/]+|favicon\.ico|favicon-vt\.png|apple-touch-icon\.png)$/)?.[1];
+  const asset = path.match(/\/(assets\/[^/]+|vt-monogram\.ico|vt-monogram-(?:16|32)\.png|apple-touch-icon\.png)$/)?.[1];
   if (asset) await stat(`dist/${asset}`);
 }
 console.log('Static page entries, build assets, and font/animation licence notices verified.');
