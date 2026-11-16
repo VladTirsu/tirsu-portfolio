@@ -243,6 +243,9 @@
   .project-gallery .artwork-image { width: 100%; height: auto; }
   .project-gallery[data-project="project-1"] figure:not(.gallery-lead) .artwork-image { aspect-ratio: 3 / 2; object-fit: cover; object-position: center; }
   .project-gallery figcaption { padding-top: 16px; font-size: 12px; }
+  .video-figure { min-width: 0; padding: clamp(16px, 3vw, 40px); background: #1d1d1d; border: 1px solid #ffffff22; }
+  .project-video { display: block; width: 100%; max-width: 420px; aspect-ratio: 9 / 16; object-fit: contain; margin-inline: auto; background: #111; }
+  .video-figure figcaption { max-width: 420px; margin-inline: auto; line-height: 1.7; }
   .brand-case-study figure { min-width: 0; }
   .brand-case-study .artwork-image { width: 100%; height: auto; }
   .brand-case-study figcaption { padding-top: 16px; font-size: 12px; }

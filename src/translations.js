@@ -239,7 +239,16 @@ export const translations = {
     "*Project description — the idea, the process, and your contribution.*": "*Descrierea proiectului — ideea, procesul și contribuția ta.*",
     "*Artwork 01*": "*Lucrare 01*",
     "*Artwork 02*": "*Lucrare 02*",
-    "*Artwork 03*": "*Lucrare 03*"
+    "*Artwork 03*": "*Lucrare 03*",
+    "Video Production & Motion Design": "Producție video și motion design",
+    "Video editing & motion design": "Montaj video și motion design",
+    "Selected work": "Lucrări selectate",
+    "Video editor & motion designer": "Editor video și motion designer",
+    "A selection of short-form video and motion work, bringing together editing, rhythm and visual effects. From automotive and coffee imagery to digital experiments, each piece explores a different visual direction within a concise vertical format.": "O selecție de videoclipuri scurte și lucrări de motion design, care îmbină montajul, ritmul și efectele vizuale. De la imagini auto și cafea până la experimente digitale, fiecare lucrare explorează o direcție vizuală diferită într-un format vertical concis.",
+    "Level Auto — Automotive Edit": "Level Auto — Montaj auto",
+    "Coffee Spoon — Short Film": "Coffee Spoon — Film scurt",
+    "NFS — Automotive Motion Edit": "NFS — Montaj auto și motion design",
+    "Hologram — Visual Experiment": "Hologram — Experiment vizual"
   },
   "de": {
     "Home": "Start",
@@ -479,7 +488,16 @@ export const translations = {
     "*Project description — the idea, the process, and your contribution.*": "*Projektbeschreibung — Idee, Prozess und Ihr Beitrag.*",
     "*Artwork 01*": "*Arbeit 01*",
     "*Artwork 02*": "*Arbeit 02*",
-    "*Artwork 03*": "*Arbeit 03*"
+    "*Artwork 03*": "*Arbeit 03*",
+    "Video Production & Motion Design": "Videoproduktion & Motion Design",
+    "Video editing & motion design": "Videoschnitt & Motion Design",
+    "Selected work": "Ausgewählte Arbeiten",
+    "Video editor & motion designer": "Videoeditor & Motion Designer",
+    "A selection of short-form video and motion work, bringing together editing, rhythm and visual effects. From automotive and coffee imagery to digital experiments, each piece explores a different visual direction within a concise vertical format.": "Eine Auswahl kurzer Videos und Motion-Arbeiten, die Schnitt, Rhythmus und visuelle Effekte verbindet. Von Automobil- und Kaffeeaufnahmen bis zu digitalen Experimenten erkundet jede Arbeit eine eigene visuelle Richtung im kompakten Hochformat.",
+    "Level Auto — Automotive Edit": "Level Auto — Automotive Edit",
+    "Coffee Spoon — Short Film": "Coffee Spoon — Kurzfilm",
+    "NFS — Automotive Motion Edit": "NFS — Automotive Motion Edit",
+    "Hologram — Visual Experiment": "Hologram — Visuelles Experiment"
   },
   "ru": {
     "Home": "Главная",
@@ -719,6 +737,15 @@ export const translations = {
     "*Project description — the idea, the process, and your contribution.*": "*Описание проекта — идея, процесс и ваш вклад.*",
     "*Artwork 01*": "*Работа 01*",
     "*Artwork 02*": "*Работа 02*",
-    "*Artwork 03*": "*Работа 03*"
+    "*Artwork 03*": "*Работа 03*",
+    "Video Production & Motion Design": "Видеопроизводство и моушн-дизайн",
+    "Video editing & motion design": "Видеомонтаж и моушн-дизайн",
+    "Selected work": "Избранные работы",
+    "Video editor & motion designer": "Видеомонтажёр и моушн-дизайнер",
+    "A selection of short-form video and motion work, bringing together editing, rhythm and visual effects. From automotive and coffee imagery to digital experiments, each piece explores a different visual direction within a concise vertical format.": "Подборка коротких видео и моушн-работ, объединяющих монтаж, ритм и визуальные эффекты. От автомобильных кадров и кофейных образов до цифровых экспериментов — каждая работа исследует своё визуальное направление в лаконичном вертикальном формате.",
+    "Level Auto — Automotive Edit": "Level Auto — Автомобильный монтаж",
+    "Coffee Spoon — Short Film": "Coffee Spoon — Короткий фильм",
+    "NFS — Automotive Motion Edit": "NFS — Автомобильный моушн-монтаж",
+    "Hologram — Visual Experiment": "Hologram — Визуальный эксперимент"
   }
 };

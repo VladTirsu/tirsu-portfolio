@@ -18,11 +18,11 @@ export const profile = {
   instagram: 'https://www.instagram.com/vlad.t18/',
 };
 
-// Add your own video under public/videos/ and set its path here when ready.
-// An optional poster is used when motion is reduced or video playback is unavailable.
+// Web background derivative; the full original stays in videos/LevelEdit.mp4.
+// The poster is used when motion is reduced or video playback is unavailable.
 export const heroMedia = {
-  video: '',
-  poster: '',
+  video: '/videos/level-edit-bg-hq.mp4',
+  poster: '/videos/level-edit-poster.webp',
   overlayOpacity: 0.62,
 };
 
@@ -97,6 +97,24 @@ Object.assign(projects[1], {
     src: `/artworks/level-auto/${name}-2000.webp`,
     sources: [640, 1200, 2000].map((width) => ({ src: `/artworks/level-auto/${name}-${width}.webp`, width })),
   })),
+});
+
+Object.assign(projects[3], {
+  title: 'Video Production & Motion Design',
+  cover: 'Video Production & Motion Design',
+  category: 'Video editing & motion design',
+  client: 'Selected work',
+  role: 'Video editor & motion designer',
+  software: 'Premiere Pro, After Effects, Photoshop, Illustrator, Blender, Cinema 4D & Maya',
+  year: '',
+  description: 'A selection of short-form video and motion work, bringing together editing, rhythm and visual effects. From automotive and coffee imagery to digital experiments, each piece explores a different visual direction within a concise vertical format.',
+  images: [],
+  videos: [
+    { title: 'Level Auto — Automotive Edit', src: '/videos/level-edit.mp4', poster: '/videos/level-edit-poster.webp' },
+    { title: 'Coffee Spoon — Short Film', src: '/videos/coffee-spoon.mp4', poster: '/videos/coffee-spoon-poster.webp' },
+    { title: 'NFS — Automotive Motion Edit', src: '/videos/nfs.mp4', poster: '/videos/nfs-poster.webp' },
+    { title: 'Hologram — Visual Experiment', src: '/videos/hologram.mp4', poster: '/videos/hologram-poster.webp' },
+  ],
 });
 
 export const skills = [

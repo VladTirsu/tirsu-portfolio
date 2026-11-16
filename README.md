@@ -45,13 +45,13 @@ Add new page paths in `src/routing.js` alongside their renderer in `src/main.js`
 Edit `src/content.js`:
 
 - `profile`: name, specialty, professional location, residence for legal disclosures, email, phone, Behance, Instagram, and portrait. The portrait imports `photos/cvphoto.jpg` and appears on About and CV; Vite includes it in the production build. Vlad confirmed he took the portrait himself. Add only public contact details you want displayed.
-- `heroMedia`: the video fills the entire opening hero behind its text, with a black overlay. Put your video under `public/videos/`, then set `video` to a path such as `/videos/hero.mp4`. Keep it empty until a real file exists. Set an optional `poster` image for reduced-motion and playback fallback. `overlayOpacity` controls the black overlay (default 0.62). The current empty source renders a text placeholder and requests no missing video file.
+- `heroMedia`: the video fills the entire opening hero behind its text, with a black overlay. Put your video under `public/videos/`, then set `video` to a path such as `/videos/hero.mp4`. Keep it empty until a real file exists. Set an optional `poster` image for reduced-motion and playback fallback. `overlayOpacity` controls the black overlay (default 0.62). The homepage uses a 15-second excerpt of `videos/LevelEdit.mp4`, preserving its original 1080 × 1920 H.264 quality (about 15 MB), with a 62% black overlay and a WebP poster. The vertical video fills the hero using a centred crop. The complete original stays in `videos/`.
 - `portfolioStats`: the supplied five years of experience and 10+ projects, displayed on Home and About.
 - `projects`: project titles, descriptions, credits, year, and images. Put image files under `public/artworks/` and replace null entries with paths such as `/artworks/project-1-01.webp`. The first image is also the overview cover. Use artwork you have permission to publish.
 - `skills` and `cv`: tools, experience, education, recognition, summary, language levels, working approach, interests, and driving licence. CV content lives on `/cv`; there is no download control. It reflects the supplied CV, including the current degree marked as in progress. The original PDF, street address, date of birth, and demographic fields are not served by the website.
 - `copy.en`: English interface copy. Add equivalent language objects for German, Russian, and Romanian when ready. Language switching is not implemented yet.
 
-The header uses a Creative Portfolio wordmark. The About and CV pages display the supplied portrait; video media currently uses a text placeholder. Their render locations are in `src/main.js`. Decorative video playback is managed in `src/hero-video.js`. Typography, colours, spacing, and interactions are in `src/style.css`.
+The header uses a Creative Portfolio wordmark. The About and CV pages display the supplied portrait; the homepage uses the LevelEdit background video. Their render locations are in `src/main.js`. Decorative video playback is managed in `src/hero-video.js`. Typography, colours, spacing, and interactions are in `src/style.css`.
 
 ## Legal notices
 
@@ -77,3 +77,7 @@ The visual implementation is original, informed by the supplied reference screen
 English is the default. The header offers EN / RO / DE / RU. Romanian, German and Russian use `?lang=ro`, `?lang=de` and `?lang=ru` on the same page routes, for example `/projects/project-2?lang=de`. Internal navigation keeps the selected language; switching languages keeps the current page and scroll position. Refresh and browser history retain the URL language. No cookies or browser storage are used.
 
 `src/content.js` remains the English source. `src/translations.js` contains translations of visible text and image descriptions; brand, product, software and institution names retain their original spelling. Add translations there when changing English copy. `src/i18n.js` handles language selection, page URLs and text localization. The original image assets and static page entries are shared by all four versions.
+
+## Video portfolio
+
+Project 4, **Video Production & Motion Design**, presents the four complete clips from `videos/` with native playback controls and no video preload. Published copies live in `public/videos/`. Players retain the full vertical framing. Automatically extracted stills are temporary player posters; replace the `poster` paths in `projects[3].videos` when final thumbnails are ready. The overview card uses a typographic placeholder until a cover is supplied.
