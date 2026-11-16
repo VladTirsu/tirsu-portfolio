@@ -80,4 +80,4 @@ English is the default. The header offers EN / RO / DE / RU. Romanian, German an
 
 ## Video portfolio
 
-Project 4, **Video Production & Motion Design**, presents the four complete clips from `videos/` with native playback controls and no video preload. Published copies live in `public/videos/`. Players retain the full vertical framing. Automatically extracted stills are temporary player posters; replace the `poster` paths in `projects[3].videos` when final thumbnails are ready. The overview card uses a typographic placeholder until a cover is supplied.
+Project 3, **Video Production & Motion Design**, presents the four complete clips from `videos/` with native playback controls and no video preload. Its project page uses gray accents. Published copies live in `public/videos/`. Players retain the full vertical framing. Automatically extracted stills are temporary player posters; replace the `poster` paths in `projects[2].videos` when final thumbnails are ready. The overview card uses a typographic placeholder until a cover is supplied.

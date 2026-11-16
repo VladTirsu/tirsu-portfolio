@@ -99,7 +99,7 @@ Object.assign(projects[1], {
   })),
 });
 
-Object.assign(projects[3], {
+Object.assign(projects[2], {
   title: 'Video Production & Motion Design',
   cover: 'Video Production & Motion Design',
   category: 'Video editing & motion design',

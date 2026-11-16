@@ -31,6 +31,7 @@
   ul { padding: 0; list-style: none; }
   img { display: block; max-width: 100%; }
   :root[data-page="/projects/project-1"] { --yellow: #018ada; }
+  :root[data-page="/projects/project-3"] { --yellow: #bcbcbc; }
 
   ::selection { background: var(--yellow); color: var(--ink); }
   :focus-visible { outline: 3px solid var(--yellow); outline-offset: 5px; }
