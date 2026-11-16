@@ -80,4 +80,6 @@ English is the default. The header offers EN / RO / DE / RU. Romanian, German an
 
 ## Video portfolio
 
-Project 3, **Video Production & Motion Design**, presents the four complete clips from `videos/` with native playback controls and no video preload. Its project page uses gray accents. Published copies live in `public/videos/`. Players retain the full vertical framing. Automatically extracted stills are temporary player posters; replace the `poster` paths in `projects[2].videos` when final thumbnails are ready. The overview card uses a typographic placeholder until a cover is supplied.
+Project 3, **Video Editing & CGI**, presents twelve complete clips from `videos/` with native playback controls and no video preload. Its project page uses gray accents. Published copies live in `public/videos/`. Players retain the full vertical framing. Automatically extracted stills are temporary player posters; replace the `poster` paths in `projects[2].videos` when final thumbnails are ready. The overview card uses responsive WebP versions of `photos/Video_Editing/video_editing_thumbnail.jpg`, configured through `projects[2].coverImage`. The eight additional clips are encoded as 1080p H.264 at 30 fps, CRF 23 with AAC audio and fast-start metadata. Originals remain untouched in `videos/`.
+
+Project 4 is a non-clickable **Coming soon** card with a lock icon. Direct visits show a coming-soon message, and next-project navigation skips it. Set `projects[3].locked` to false and supply its content when ready to publish.

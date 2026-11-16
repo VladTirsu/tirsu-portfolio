@@ -139,6 +139,9 @@
   .artwork-placeholder { position: relative; display: grid; place-items: center; border: 1px solid var(--line); background: #e4e4df; overflow: hidden; }
   .placeholder-label { font-family: var(--mono); font-size: 13px; font-weight: 400; letter-spacing: 0.04em; text-align: center; padding: 20px; color: inherit; }
   .project-card { display: block; min-width: 0; }
+  .locked-cover { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; color: #74746f; background: #e7e7e2; border: 1px solid var(--line); }
+  .project-lock { width: 44px; height: 44px; }
+  .project-card-locked:hover .card-frame { transform: none; box-shadow: none; }
   .card-frame { position: relative; aspect-ratio: 1.5; overflow: hidden; transition: transform 300ms ease, box-shadow 300ms ease; }
   .project-card:focus-visible .card-frame { transform: translateY(-4px) scale(1.01); box-shadow: 0 12px 24px -12px #00000040; }
   @media (hover: hover) and (pointer: fine) {

@@ -55,7 +55,11 @@ function media(project, index, className = '') {
 }
 
 function projectCard(project) {
-  const coverImage = project.images[project.coverImageIndex ?? 0];
+  if (project.locked) return `<article class="project-card project-card-locked" data-project="${escape(project.id)}" aria-label="Project ${project.number} — Coming soon" data-reveal>
+    <div class="card-frame locked-cover"><svg class="project-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></svg><span class="eyebrow">Coming soon</span></div>
+    <div class="card-caption"><div><p class="eyebrow muted"><span class="caption-number">${project.number}</span><span aria-hidden="true"> / </span>${escape(project.category)}</p><h3>${escape(project.title)}</h3></div></div>
+  </article>`;
+  const coverImage = project.coverImage ?? project.images[project.coverImageIndex ?? 0];
   const cover = coverImage
     ? artworkImage(coverImage, { className: 'card-media', sizes: '(max-width: 420px) calc(100vw - 48px), (max-width: 760px) calc((100vw - 66px) / 2), (max-width: 1860px) calc((86vw - 32px) / 2), 784px', alt: project.title })
     : placeholder(project.cover, 'card-media');
@@ -172,7 +176,9 @@ function brandStory(project) {
 }
 
 function projectPage(project) {
-  const next = projects[(projects.indexOf(project) + 1) % projects.length];
+  if (project.locked) return `${pageHeading('Portfolio / 04', 'Coming soon', 'A new project is on its way.')}<section class="section section-light"><div class="container">${link('/works', t.project.back, 'text-link', 'left')}</div></section>`;
+  const available = projects.filter((item) => !item.locked);
+  const next = available[(available.indexOf(project) + 1) % available.length];
   return `<section class="project-heading section-dark"><div class="container"><div data-reveal>${link('/works', t.project.back, 'back-link text-link', 'left')}</div><p class="eyebrow accent project-type" data-reveal>${escape(project.category)}</p><h1 data-reveal>${escape(project.title)}<span class="accent">.</span></h1><dl class="project-metadata" data-reveal>${[['client', project.client], ['role', project.role], ['software', project.software], ['year', project.year]].filter(([, value]) => value).map(([label, value]) => `<div><dt class="eyebrow muted">${t.project[label]}</dt><dd>${escape(value)}</dd></div>`).join('')}</dl></div></section>
   <section class="project-gallery-section section-dark"><div class="container">${project.layout === 'brand-story' ? brandStory(project) : `<div class="project-gallery" data-project="${escape(project.id)}">${project.videos ? project.videos.map((video, index) => `<figure class="video-figure" data-reveal><video class="project-video" controls playsinline preload="none" poster="${escape(href(video.poster))}" aria-label="${escape(video.title)}"><source src="${escape(href(video.src))}" type="video/mp4"><a href="${escape(href(video.src))}">${escape(video.title)}</a></video><figcaption class="eyebrow muted">${String(index + 1).padStart(2, '0')} / ${escape(video.title)}</figcaption></figure>`).join('') : project.images.map((image, index) => `<figure${index === 0 || image?.wide ? ' class="gallery-lead"' : ''} data-reveal>${media(project, index)}<figcaption class="eyebrow muted">${String(index + 1).padStart(2, '0')} / ${escape(image?.caption || project.title)}</figcaption></figure>`).join('')}</div><div class="project-story" data-reveal><p class="eyebrow accent">Behind the artwork</p><p>${escape(project.description)}</p></div>`}<div class="back-to-projects" data-reveal>${link('/works', t.project.backBottom, 'text-link', 'left')}</div></div></section>
   <a class="next-project section-dark" href="${href(`/projects/${next.id}`)}"><div class="container"><div><p class="eyebrow accent">${t.project.next} / ${next.number}</p><h2>${escape(next.title)}.</h2></div>${arrow()}</div></a>`;

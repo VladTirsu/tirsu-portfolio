@@ -100,21 +100,41 @@ Object.assign(projects[1], {
 });
 
 Object.assign(projects[2], {
-  title: 'Video Production & Motion Design',
-  cover: 'Video Production & Motion Design',
-  category: 'Video editing & motion design',
+  title: 'Video Editing & CGI',
+  cover: 'Video Editing & CGI',
+  coverImage: {
+    src: '/artworks/video-editing/cover-1920.webp',
+    width: 1920, height: 1080,
+    alt: 'Video Editing cover with bold white typography over an editing timeline',
+    sources: [640, 1200, 1920].map((width) => ({ src: `/artworks/video-editing/cover-${width}.webp`, width })),
+  },
+  category: 'Filming, editing & CGI',
   client: 'Selected work',
-  role: 'Video editor & motion designer',
+  role: 'Filmmaker, video editor & CGI artist',
   software: 'Premiere Pro, After Effects, Photoshop, Illustrator, Blender, Cinema 4D & Maya',
   year: '',
-  description: 'A selection of short-form video and motion work, bringing together editing, rhythm and visual effects. From automotive and coffee imagery to digital experiments, each piece explores a different visual direction within a concise vertical format.',
+  description: 'Selected video and CGI work across automotive, hospitality and product storytelling. Filming and editing sit alongside 3D animation, compositing and visual effects, bringing real footage and digital imagery together in short vertical films.',
   images: [],
   videos: [
     { title: 'Level Auto — Automotive Edit', src: '/videos/level-edit.mp4', poster: '/videos/level-edit-poster.webp' },
     { title: 'Coffee Spoon — Short Film', src: '/videos/coffee-spoon.mp4', poster: '/videos/coffee-spoon-poster.webp' },
     { title: 'NFS — Automotive Motion Edit', src: '/videos/nfs.mp4', poster: '/videos/nfs-poster.webp' },
     { title: 'Hologram — Visual Experiment', src: '/videos/hologram.mp4', poster: '/videos/hologram-poster.webp' },
+    { title: 'Level Auto — CGI Animation', src: '/videos/level-auto-cgi.mp4', poster: '/videos/level-auto-cgi-poster.webp' },
+    { title: 'Level Auto — S-Class CGI', src: '/videos/level-s-class-cgi.mp4', poster: '/videos/level-s-class-cgi-poster.webp' },
+    { title: 'Level Auto — Easy Fly CGI', src: '/videos/level-easy-fly-cgi.mp4', poster: '/videos/level-easy-fly-cgi-poster.webp' },
+    { title: 'Level Auto — Black Friday', src: '/videos/level-black-friday.mp4', poster: '/videos/level-black-friday-poster.webp' },
+    { title: 'Level Auto — Fast Edit', src: '/videos/level-fast-edit.mp4', poster: '/videos/level-fast-edit-poster.webp' },
+    { title: 'Level Auto — Visual Story', src: '/videos/level-visual-story.mp4', poster: '/videos/level-visual-story-poster.webp' },
+    { title: 'Café — Visual Story', src: '/videos/cafe-story.mp4', poster: '/videos/cafe-story-poster.webp' },
+    { title: 'Drinks — Product Study', src: '/videos/drink-study.mp4', poster: '/videos/drink-study-poster.webp' },
   ],
+});
+
+Object.assign(projects[3], {
+  title: 'Coming soon',
+  category: 'In progress',
+  locked: true,
 });
 
 export const skills = [
